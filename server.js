@@ -16,10 +16,6 @@ app.use(bodyParser.json());
 
 app.use('/', router);
 
-app.get("/appUrl/get", function (req, res) {
-    res.send({ appUrl: "http://localhost:9090"});
-});
-
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;

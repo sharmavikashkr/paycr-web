@@ -10,7 +10,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label class="control-label">Upload Consumers (CSV): (<a href="/invoice/bulk/upload/format">Download format</a>)</label>
+								<label class="control-label">Upload Consumers (CSV): (<a href="#" ng-click="newTab('/invoice/bulk/upload/format')">Download format</a>)</label>
 								<input type="file" onchange="angular.element(this).scope().uploadConsumers(this.files)" accept=".csv" />
 							</div>
 							<br>
@@ -25,7 +25,7 @@
 								</thead>
 								<tbody>
 									<tr ng-repeat="bulkUpload in bulkUploads">
-										<td><a target="_blank" href="/invoice/bulk/download/{{bulkUpload.fileName}}">{{bulkUpload.fileName}}</a></td>
+										<td><a target="_blank" href="#" ng-click="newTab('/invoice/bulk/download/' + bulkUpload.fileName)">{{bulkUpload.fileName}}</a></td>
 										<td class="hidden-xs">{{bulkUpload.created | date:'dd-MM-yyyy HH:mm'}}</td>
 										<td class="hidden-xs">{{bulkUpload.createdBy}}</td>
 									</tr>

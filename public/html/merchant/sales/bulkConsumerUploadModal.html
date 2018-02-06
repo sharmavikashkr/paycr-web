@@ -59,7 +59,7 @@
 								</tr>
 							</table>
 							<div class="form-group">
-								<label class="control-label">Upload Consumers (CSV): (<a href="/consumer/bulk/upload/format">Download format</a>)</label>
+								<label class="control-label">Upload Consumers (CSV): (<a href="#" ng-click="newTab('/consumer/bulk/upload/format')">Download format</a>)</label>
 								<input type="file" onchange="angular.element(this).scope().uploadConsumers(this.files)" accept=".csv" />
 							</div>
 							<br>
@@ -74,7 +74,7 @@
 								</thead>
 								<tbody>
 									<tr ng-repeat="bulkUpload in bulkConsumerUploads">
-										<td><a target="_blank" href="/consumer/bulk/download/{{bulkUpload.fileName}}">{{bulkUpload.fileName}}</a></td>
+										<td><a href="#" ng-click="newTab('/consumer/bulk/download/' + bulkUpload.fileName)">{{bulkUpload.fileName}}</a></td>
 										<td class="hidden-xs">{{bulkUpload.created | date:'dd-MM-yyyy HH:mm'}}</td>
 										<td class="hidden-xs">{{bulkUpload.createdBy}}</td>
 									</tr>

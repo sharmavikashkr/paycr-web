@@ -137,7 +137,7 @@
 											<button ng-click="updateExpensePayInfo(expense)" title="Payments" class="btn btn-flat btn-success btn-md" data-toggle="modal" data-target="#expensePaymentModal">
 												<i class="fa fa-rupee"></i>
 											</button>
-											<a title="Download Pdf" class="btn btn-flat bg-navy btn-md" href="/expense/receipt/{{expense.expenseCode}}" target="_blank">
+											<a title="Download Pdf" class="btn btn-flat bg-navy btn-md" href="#" ng-click="newTab('/expense/receipt/' + expense.expenseCode)">
 												<i class="fa fa-file-pdf-o"></i>
 											</a>
 											<button ng-click="updateExpenseInfo(expense)" title="Attachments" class="btn btn-flat bg-maroon btn-md" data-toggle="modal" data-target="#expenseAttachmentModal">
