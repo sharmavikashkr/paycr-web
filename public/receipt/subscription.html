@@ -1,0 +1,187 @@
+<html>
+<head>
+	<title>PayCr</title>
+	<link rel="shortcut icon" href="${staticUrl}/images/ico/favicon.png">
+    <link href="${staticUrl}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${staticUrl}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="${staticUrl}/dist/css/AdminLTE.min.css" rel="stylesheet">
+    <script src="${staticUrl}/vendor/jquery/jquery.min.js"></script>
+    <style type="text/css">
+    	table {
+			font-size: 14px;
+		}
+    </style>
+</head>
+<body>
+	<section class="invoice">
+		<div id="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<h2 class="page-header">
+						Tax Invoice <small class="pull-right"><b>Date:</b> ${subs.created}</small>
+					</h2>
+				</div>
+			</div>
+			<div class="row invoice-info">
+				<div class="col-sm-4 invoice-col">
+					<b>Invoice#</b> ${subs.subscriptionCode}
+				</div>
+				<#if subs.merchant.address??>
+					<div class="col-sm-4 invoice-col">
+						<b>Place of Supply:</b> ${subs.merchant.address.state}
+					</div>
+				</#if>
+				<div class="col-sm-4 invoice-col">
+					<b>Payment Due:</b> ${subs.created?date}
+				</div>
+			</div>
+			<hr>
+			<div class="row invoice-info">
+				<div class="col-sm-4 invoice-col">
+					<u>From</u>
+					<address>
+						<strong><i class="fa fa-institution"></i> PayCr</strong>
+						<#if admin.address??>
+						<br>${admin.address.addressLine1}
+						<br><#if admin.address.addressLine2??>${admin.address.addressLine2}</#if>
+						<br>${admin.address.city}
+						<br>${admin.address.state}, ${admin.address.pincode}
+						<br>${admin.address.country}
+						</#if>
+						<br><i class="fa fa-phone"></i> ${company.mobile}
+						<br><i class="fa fa-envelope"></i> ${company.email}
+						<#if admin.gstin??>
+						<br><b>GSTIN: </b>${admin.gstin}
+						</#if>
+					</address>
+				</div>
+				<div class="col-sm-4 invoice-col">
+					<u>Billed To</u>
+					<address>
+						<strong><i class="fa fa-institution"></i> ${subs.merchant.name}</strong>
+						<#if subs.merchant.address??>
+						<br>${subs.merchant.address.addressLine1}
+						<br><#if subs.merchant.address.addressLine2??>${subs.merchant.address.addressLine2}</#if>
+						<br>${subs.merchant.address.city}
+						<br>${subs.merchant.address.state}, ${subs.merchant.address.pincode}
+						<br>${subs.merchant.address.country}
+						</#if>
+						<br><i class="fa fa-phone"></i> ${subs.merchant.mobile}
+						<br><i class="fa fa-envelope"></i> ${subs.merchant.email}
+						<#if subs.merchant.gstin??>
+						<br><b>GSTIN: </b>${subs.merchant.gstin}
+						</#if>
+					</address>
+				</div>
+				<div class="col-sm-4 invoice-col">
+					<u>Shipping To</u>
+					<address>
+						<strong><i class="fa fa-institution"></i> ${subs.merchant.name}</strong>
+						<#if subs.merchant.address??>
+						<br>${subs.merchant.address.addressLine1}
+						<br><#if subs.merchant.address.addressLine2??>${subs.merchant.address.addressLine2}</#if>
+						<br>${subs.merchant.address.city}
+						<br>${subs.merchant.address.state}, ${subs.merchant.address.pincode}
+						<br>${subs.merchant.address.country}
+						</#if>
+						<br><i class="fa fa-phone"></i> ${subs.merchant.mobile}
+						<br><i class="fa fa-envelope"></i> ${subs.merchant.email}
+					</address>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>HSN/SAC</th>
+								<th>Rate</th>
+								<th>Qty</th>
+								<th>Tax</th>
+								<th>Total</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>${subs.pricing.name} Pricing Plan<br><small>(${subs.pricing.description})</small></td>
+								<td><#if subs.pricing.hsnsac??> ${subs.pricing.hsnsac}</#if></td>
+								<td><i class="fa fa-rupee"></i> ${subs.pricing.rate}</td>
+								<td>${subs.quantity}</td>
+								<td>${subs.tax.name} ${subs.tax.value}%</td>
+								<td><i class="fa fa-rupee"></i> ${subs.payAmount}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3">
+					<u>Payment Methods:</u>
+					<!-- <img src="${staticUrl}/dist/img/credit/visa.png" alt="Visa">
+					<img src="${staticUrl}/dist/img/credit/mastercard.png" alt="Mastercard">
+					<img src="${staticUrl}/dist/img/credit/mestro.png" alt="Maestro"> -->
+					<p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+					Choose from many available option like CreditCard, DebitCard, NetBanking, 
+						Mobile Wallets, UPI, etc to pay your dues.
+					</p>
+				</div>
+				<div class="col-xs-3"></div>
+				<div class="col-xs-6">
+					<u>Amount Due by ${subs.created?date}</u>
+					<div class="table-responsive">
+						<br>
+						<table class="table">
+							<tr>
+								<th style="width: 50%">Total:</th>
+								<td><i class="fa fa-rupee"></i> ${subs.total}</td>
+							</tr>
+							<tr>
+								<th>${subs.tax.name} (${subs.tax.value}%)</th>
+								<td>${subs.payAmount - subs.total}</td>
+							</tr>
+							<tr>
+								<th>Discount:</th>
+								<td><i class="fa fa-rupee"></i> 0</td>
+							</tr>
+							<tr>
+								<th>Pay Amount:</th>
+								<td><i class="fa fa-rupee"></i> ${subs.payAmount}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4 text-center pull-right">
+					<br><hr>
+					<strong>PayCr</strong>
+					<div>(Authorised Signatory)</div>
+					<br>
+				</div>
+			</div>
+		</div>
+		<div class="row no-print">
+			<div class="col-xs-12">
+				<a onclick="printDiv()" class="btn btn-default">
+					<i class="fa fa-print"></i> Print
+				</a>
+				<a href="/subscription/receipt/download/${subs.subscriptionCode}" class="btn btn-primary pull-right">
+					<i class="fa fa-download"></i> Generate PDF
+				</a>
+			</div>
+		</div>
+	</section>
+	<script src="${staticUrl}/vendor/jquery/jquery.min.js"></script>
+    <script src="${staticUrl}/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+		function printDiv() {
+		     var printContents = document.getElementById('container').innerHTML;
+		     var originalContents = document.body.innerHTML;
+		     document.body.innerHTML = printContents;
+		     window.print();
+		     document.body.innerHTML = originalContents;
+		}
+	</script>
+</body>
+</html>

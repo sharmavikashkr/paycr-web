@@ -1,0 +1,160 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>PayCr</title>
+    <link rel="shortcut icon" href="${staticUrl}/images/ico/favicon.png">
+    <link href="${staticUrl}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${staticUrl}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="${staticUrl}/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="${staticUrl}/dist/css/skins/_all-skins.min.css">
+    <style type="text/css">
+    	table {
+			font-size: 14px;
+		}
+    </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini" style="background:#ecf0f5;">
+	<header class="main-header">
+		<a target="_blank" href="/" class="logo">
+			<span class="logo-lg"><b>PayCr</b></span>
+		</a>
+		<nav class="navbar navbar-static-top">
+			<div class="navbar-custom-menu">
+				<ul class="nav navbar-nav">
+					<li class="dropdown notifications-menu">
+						<a target="_blank" href="/#about">About</a>
+					</li>
+					<li class="dropdown notifications-menu">
+						<a target="_blank" href="/#services">Services</a>
+					</li>
+					<li class="dropdown notifications-menu">
+						<a target="_blank" href="/#get-in-touch">Contact</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+    <div id="itemsModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h5 class="modal-title"> Invoice# <strong>${invoice.invoiceCode}</strong></h5>
+				</div>
+				<div class="modal-body">
+					<table class="table table-bordered">
+                           <thead>
+                               <tr>
+                                   <td class="text-center"><strong>Item Name</strong></td>
+                                   <td class="text-center"><strong>Rate</strong></td>
+                                   <td class="text-center"><strong>Quantity</strong></td>
+                                   <td class="text-center"><strong>Tax</strong></td>
+                                   <td class="text-right"><strong>Total</strong></td>
+                               </tr>
+                           </thead>
+                           <tbody id="itemBody">
+                           	<#list invoice.items as item>
+                               <tr id="itemRow">
+                                   <td class="text-center">${item.inventory.name}</td>
+                                   <td class="text-center"><i class="fa fa-rupee"></i> ${item.inventory.rate}</td>
+                                   <td class="text-center">${item.quantity}</td>
+                                   <td class="text-center">${item.tax.name} ${item.tax.value}%</td>
+                                   <td class="text-right"><i class="fa fa-rupee"></i> ${item.price}</td>
+                               </tr>
+                               </#list>
+                               <tr>
+                                   <td class="text-center"></td>
+                                   <td class="text-center"></td>
+                                   <td class="text-center"></td>
+			                    <td class="text-center"><strong>Shipping</strong></td>
+                                   <td class="text-right"><i class="fa fa-rupee"></i> ${invoice.shipping}</td>
+                               </tr>
+                               <tr>
+                                   <td class="text-center"></td>
+                                   <td class="text-center"></td>
+                                   <td class="text-center"></td>
+                                   <td class="text-center"><strong>Discount</strong></td>
+                                   <td class="text-right"><i class="fa fa-rupee"></i> ${invoice.discount}</td>
+                               </tr>
+                               <tr>
+                                   <td class="text-center"></td>
+                                   <td class="text-center"></td>
+                                   <td class="text-center"></td>
+                                   <td class="text-center"><strong>Pay Amount</strong></td>
+                                   <td class="text-right"><i class="fa fa-rupee"></i> ${invoice.payAmount}</td>
+                               </tr>
+                           </tbody>
+                       </table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<section style="margin-top:100px;" class="hidden-xs"></section>
+	<section style="margin-top:20px;" class="visible-xs"></section>
+	<section>
+        <div class="container text-center">
+			<div class="col-sm-8 col-sm-offset-2">
+				<div class="row panel panel-primary" style="background: cadetblue;">
+	                <div class="col-md-6" style="background: darksalmon;padding:20px;">
+	                	<div class="row">
+	                    	<div class="col-md-3 col-xs-3">
+	                    		<i class="fa fa-user fa-3x"></i>
+	                    	</div>
+	                    	<div class="col-md-6 col-xs-6" style="font-size:12px;color:white;">
+	                    		<div>Consumer details required</div>
+	                    		<div>before proceeding to pay</div>
+	                    	</div>
+	                    </div>
+	                    <hr class="hidden-xs">
+	                    <div class="row hidden-xs">
+	                    	<h3 class="section-heading"><a target="_blank" href="/invoice/receipt/${invoice.invoiceCode}" title="Invoice Receipt"><i class="fa fa-file-pdf-o fa-5x"></i></a></h3>
+	                    	<!-- <a href="#" data-toggle="modal" data-target="#itemsModal">View Bill</a> -->
+	                    </div>
+	                    <div class="row hidden-xs">
+	                    	<h3 class="section-heading">Powered by Paycr</h3>
+	                    </div>
+	                </div>
+	                <div class="col-md-6" style="padding:20px;">
+	                	<div class="row hidden-xs">
+	                		<div class="col-md-2 col-md-offset-5">
+	                    		<h3 class="section-heading"><img style="max-height:100%;max-width:100%" alt="PAYCR" src="${banner}"></h3>
+	                    	</div>
+	                    </div>
+	                	<div class="row">
+							<form action="/payment/updateConsumerAndPay/${invoice.invoiceCode}" method="post">
+								<table class="table table-bordered table-responsive">
+				                    <tbody>
+				                        <tr>
+				                            <td class="text-center hidden-xs">Name : </td>
+				                            <td class="text-center"><input class="form-control has-error" id="conname" placeholder="Name" name="name" pattern="[0-9a-zA-Z_\\- ]{1,50}" required></td>
+				                        </tr>
+				                        <tr>
+				                            <td class="text-center hidden-xs">Email : </td>
+				                            <td class="text-center"><input class="form-control has-error" id="conemail" placeholder="Email" name="email" pattern="([a-zA-Z0-9_.]{1,})((@[a-zA-Z]{2,})[\\\.]([a-zA-Z]{2}|[a-zA-Z]{3}))" required></td>
+				                        </tr>
+				                        <tr>
+				                            <td class="text-center hidden-xs">Mobile : </td>
+				                            <td class="text-center"><input class="form-control has-error" name="mobile" placeholder="Mobile" pattern="\d{10}" required></td>
+				                        </tr>
+				                    </tbody>
+				                </table>
+				                <input type="hidden" name="signature" value="${signature}">
+				                <input class="btn btn-warning" type="submit" value="Proceed to Pay">
+			                </form>
+	                	</div>
+	                </div>
+	            </div>
+			</div>
+		</div>
+    </section>
+    <script src="${staticUrl}/vendor/jquery/jquery.min.js"></script>
+    <script src="${staticUrl}/vendor/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

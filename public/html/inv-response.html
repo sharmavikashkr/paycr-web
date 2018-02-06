@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>PayCr</title>
+    <link rel="shortcut icon" href="${staticUrl}/images/ico/favicon.png">
+    <link href="${staticUrl}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${staticUrl}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="${staticUrl}/dist/css/AdminLTE.min.css">
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="row" style="margin-top:20px;">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    	<#if invoice.status == 'PAID'>
+                        <h3 class="panel-title text-center">Payment for Invoice# <span><strong>${invoice.invoiceCode} : </strong></span><span><strong style="color:limegreen;">SUCCESS</strong></span></h3>
+                    	<#else>
+                        <h3 class="panel-title text-center">Payment for Invoice# <span><strong>${invoice.invoiceCode} : </strong></span><span><strong style="color:red;">FAILURE</strong></span></h3>
+                    	</#if>
+                    </div>
+                    <div class="panel-body">
+                        <table style="width: 100%; border-collapse:collapse;" class="table table-striped table-bordered table-hover">
+                       		<tbody>
+                       			<tr>
+                       				<td class="text-center"><label>Invoice#</label></td>
+                       				<td class="text-center"><p>${invoice.invoiceCode}</p></td>
+                       			</tr>
+                       			<tr>
+                       				<td class="text-center"><label>Status</label></td>
+                       				<td class="text-center"><p>${invoice.status}</p></td>
+                       			</tr>
+                       			<tr>
+                       				<td class="text-center"><label>Merchant</label></td>
+                       				<td class="text-center"><p>${merchant.name}</p></td>
+                       			</tr>
+                       			<tr>
+                       				<td class="text-center"><label>Merchant Mobile</label></td>
+                       				<td class="text-center"><p>${merchant.mobile}</p></td>
+                       			</tr>
+                       			<tr>
+                       				<td class="text-center"><label>Merchant Email</label></td>
+                       				<td class="text-center"><p>${merchant.email}</p></td>
+                       			</tr>
+                       			<tr>
+                       				<td class="text-center"><label>Consumer</label></td>
+                       				<td class="text-center"><p>${invoice.consumer.name}</p></td>
+                       			</tr>
+                       			<tr>
+                       				<td class="text-center"><label>Consumer Mobile</label></td>
+                       				<td class="text-center"><p>${invoice.consumer.mobile}</p></td>
+                       			</tr>
+                       			<tr>
+                       				<td class="text-center"><label>Consumer Email</label></td>
+                       				<td class="text-center"><p>${invoice.consumer.email}</p></td>
+                       			</tr>
+                       			<tr>
+                       				<td class="text-center"><label>Total</label></td>
+                       				<td class="text-center"><p><i class="fa fa-rupee"></i> ${invoice.total}</p></td>
+                       			</tr>
+                       			<tr>
+                       				<td class="text-center"><label>Shipping</label></td>
+                       				<td class="text-center"><p><i class="fa fa-rupee"></i> ${invoice.shipping}</p></td>
+                       			</tr>
+                       			<tr>
+                       				<td class="text-center"><label>Discount</label></td>
+                       				<td class="text-center"><p><i class="fa fa-rupee"></i> ${invoice.discount}</p></td>
+                       			</tr>
+                       			<tr>
+                       				<td class="text-center"><label>Pay Amount</label></td>
+                       				<td class="text-center"><p><i class="fa fa-rupee"></i> ${invoice.payAmount}</p></td>
+                       			</tr>
+                       			<#if invoice.payment??>
+                       			<tr>
+                       				<td class="text-center"><label>Payment Reference Number</label></td>
+                       				<td class="text-center"><p>${invoice.payment.paymentRefNo}</p></td>
+                       			</tr>
+                       			<tr>
+                       				<td class="text-center"><label>Payment Status</label></td>
+                       				<td class="text-center"><p>${invoice.payment.status}</p></td>
+                       			</tr>
+                       			<tr>
+                       				<td class="text-center"><label>Payment Mode</label></td>
+                       				<td class="text-center"><p>${invoice.payment.payMode}</p></td>
+                       			</tr>
+                       			<tr>
+                       				<td class="text-center"><label>Payment Method</label></td>
+                       				<td class="text-center"><p>${invoice.payment.method}</p></td>
+                       			</tr>
+                       			</#if>
+                       		</tbody>
+                       	</table>
+                	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <#if show>
+    <div class="text-center">
+    	<tr>
+        	<#if invoice.status == 'PAID'>
+        	<td class="text-center"><a href="/payment/receipt/download/${invoice.invoiceCode}" type="button" class="btn btn-info">download</a></td>
+            <td class="text-center"><button type="button" onclick="printDiv()" class="btn btn-warning">print</button></td>
+            <#else>
+	        <td class="text-center"><a type="button" class="btn btn-success" href="/${invoice.invoiceCode}">pay</a></td>
+	        </#if>
+            </tr>
+    </div>
+    </#if>
+    <br>
+    <script src="${staticUrl}/vendor/jquery/jquery.min.js"></script>
+    <script src="${staticUrl}/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+		function printDiv() {
+		     var printContents = document.getElementById('container').innerHTML;
+		     var originalContents = document.body.innerHTML;
+		     document.body.innerHTML = printContents;
+		     window.print();
+		     document.body.innerHTML = originalContents;
+		}
+	</script>
+</body>
+</html>
