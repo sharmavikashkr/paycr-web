@@ -4,7 +4,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var router = require('./routes/router');
-var port = process.env.PORT || 9000;
+var port = process.env.PORT || 8000;
 
 var app = express();
 app.use(cookieParser());
