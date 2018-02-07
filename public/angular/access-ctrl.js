@@ -1,9 +1,10 @@
 var app = angular.module('payCrApp', [ "ngRoute", "ngCookies", "environment" ]);
 app.config(function(envServiceProvider) {
-	envServiceProvider.config({domains: {
-			development: ['localhost'],
-			production: ['paycr.in', '*.paycr.in'],
-			alpha: ['alpha.paycr.com']
+    envServiceProvider.config({
+        domains: {
+            development: ['localhost'],
+            alpha: ['alpha.paycr.in'],
+			production: ['paycr.in', '*.paycr.in']
 		},
 		vars: {
 			development: {

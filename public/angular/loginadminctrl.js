@@ -1,25 +1,26 @@
 var app = angular.module('payCrAppAdmin', ["ngRoute","ngCookies", "environment"]);
 app.config(function(envServiceProvider) {
-	envServiceProvider.config({domains: {
-			development: ['localhost'],
-			production: ['paycr.in', '*.paycr.in'],
-			alpha: ['alpha.paycr.com']
-		},
-		vars: {
-			development: {
-				apiUrl: 'http://localhost:9090'
-			},
-			alpha: {
-				apiUrl: 'http://alphaapi.paycr.in'
-			},
-			production: {
-				apiUrl: 'http://api.paycr.in'
-			},
-			defaults: {
-				apiUrl: 'http://localhost:9090'
-			}
-		}
-	});
+    envServiceProvider.config({
+        domains: {
+            development: ['localhost'],
+            alpha: ['alpha.paycr.in'],
+            production: ['paycr.in', '*.paycr.in']
+        },
+        vars: {
+            development: {
+                apiUrl: 'http://localhost:9090'
+            },
+            alpha: {
+                apiUrl: 'http://alphaapi.paycr.in'
+            },
+            production: {
+                apiUrl: 'http://api.paycr.in'
+            },
+            defaults: {
+                apiUrl: 'http://localhost:9090'
+            }
+        }
+    });
 	envServiceProvider.check();
 });
 app.controller('LoginController', function($scope, envService, $http, $cookies, $httpParamSerializer) {
