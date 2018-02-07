@@ -5,8 +5,9 @@
   "main": "server.js",
   "author": "Vikash Kumar",
   "dependencies": {
+    "express": "^4.16.2",
     "body-parser": "^1.18.2",
-	"ejs": "^2.5.5",
-    "express": "^4.10.8"
+    "ejs": "^2.5.7",
+    "cookie-parser" : "^1.4.3"
   }
 }

@@ -1,10 +1,14 @@
 // set up ======================================================================
 var express = require('express');
-var app = express();
-var port = process.env.PORT || 9000;
+var cookieParser = require('cookie-parser')
 var path = require('path');
 var bodyParser = require('body-parser');
+var Cookies = require("cookies");
 var router = require('./routes/router');
+
+var app = express();
+app.use(cookieParser());
+var port = process.env.PORT || 9000;
 
 app.set('views', path.join(__dirname, 'public/html'));
 app.engine('html', require('ejs').renderFile);
