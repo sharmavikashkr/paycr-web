@@ -115,7 +115,8 @@ app.controller('MerchantController', function($scope, $rootScope, envService, $h
 			alert('Please allow popups for this website');
 		}
 	}
-	$scope.prepare = function() {
+    $scope.prepare = function () {
+        $scope.check();
 		$scope.fetchMerchant();
 		$scope.fetchUser();
 		$scope.fetchNotifications();
@@ -179,7 +180,21 @@ app.controller('MerchantController', function($scope, $rootScope, envService, $h
 		}, function(data) {
 			$scope.serverMessage(data);
 		});
-	}
+    }
+    $scope.check = function () {
+        var req = {
+            method: 'GET',
+            url: envService.read('apiUrl') + "/merchant/check",
+            headers: {
+                "Authorization": "Bearer "
+                + $cookies.get("access_token")
+            }
+        }
+        $http(req).then(function (data) {
+        }, function (data) {
+            $scope.serverMessage(data);
+        });
+    }
 	$scope.fetchUser = function() {
 		var req = {
 			method : 'GET',
@@ -261,8 +276,6 @@ app.controller('MerchantController', function($scope, $rootScope, envService, $h
 	}
 	$scope.logout = function() {
 		$cookies.put("access_token", "");
-		$timeout(function(){
-			window.location.href="/login?logout";
-		}, 1000);
+		window.location.href="/login?logout";
 	}
 });

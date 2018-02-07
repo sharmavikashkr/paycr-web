@@ -40,9 +40,24 @@ app.controller('LoginController', function($scope, envService, $http, $cookies, 
         }
         $http(req).then(function(data) {
             $cookies.put("access_token", data.data.access_token);
-            window.location.href = "/admin";
+            $scope.check();
         }, function(data) {
     		$scope.invalidcreds = true;
 		});
+    }
+    $scope.check = function () {
+        var req = {
+            method: 'GET',
+            url: envService.read('apiUrl') + "/admin/check",
+            headers: {
+                "Authorization": "Bearer "
+                + $cookies.get("access_token")
+            }
+        }
+        $http(req).then(function (data) {
+            window.location.href = "/admin";
+        }, function (data) {
+            $scope.invalidcreds = true;
+        });
     }
 });

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -16,10 +16,10 @@
 	<script src="/vendor/angular/angular-route.js"></script>
 	<script src="/vendor/angular/angular-cookies.js"></script>
 	<script src="/vendor/angular/angular-environment.js"></script>
-	<script src="/angular/loginctrl.js"></script>
+	<script src="/angular/access-ctrl.js"></script>
 </head>
-<body class="hold-transition login-page" ng-app="payCrApp" ng-controller="LoginController">
-    <div class="container" ng-init="loadAppUrl()">
+<body class="hold-transition login-page" ng-app="payCrApp" ng-controller="AccessController">
+    <div class="container">
 		<div ng-hide="!invalidcreds" id="serverRespAlert" class="alert alert-danger alert-dismissible">
 			<div class="text-center">
 				<strong>Invalid Credentials</strong>
@@ -33,11 +33,11 @@
 				<p class="login-box-msg">Sign in to start your session</p>
 				<form>
 					<div class="form-group has-feedback">
-						<input ng-model="data.email" type="email" class="form-control" placeholder="Email">
+						<input ng-model="user.email" type="email" class="form-control" placeholder="Email">
 						<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 					</div>
 					<div class="form-group has-feedback">
-						<input ng-model="data.password" type="password" class="form-control" placeholder="Password">
+						<input ng-model="user.password" type="password" class="form-control" placeholder="Password">
 						<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 					</div>
 					<div class="row">
@@ -58,7 +58,7 @@
 					<a href="#" class="btn btn-block btn-social btn-google btn-flat"><i
 						class="fa fa-google-plus"></i> Sign in using Google+</a>
 				</div> -->
-				<a href="/forgotPassword"><small>forgot password?</small></a>
+				<a href="/forgot-password"><small>forgot password?</small></a>
 				<br>
 				<small>New to PayCr? <a href="/register">Create an account</a></small>
 			</div>

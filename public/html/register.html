@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -12,33 +12,36 @@
     <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
 	<link rel="stylesheet" href="/plugins/iCheck/square/blue.css">
+    <script src="/vendor/angular/angular.js"></script>
+    <script src="/vendor/angular/angular-route.js"></script>
+    <script src="/vendor/angular/angular-cookies.js"></script>
+    <script src="/vendor/angular/angular-environment.js"></script>
+    <script src="/angular/access-ctrl.js"></script>
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" ng-app="payCrApp" ng-controller="AccessController">
     <div class="container">
-    	<#if error>
-    	<div id="serverRespAlert" class="alert alert-danger alert-dismissible">
+    	<div ng-hide="!isError" id="serverRespAlert" class="alert alert-danger alert-dismissible">
 			<div class="text-center">
-				<strong>${errorMessage}</strong>
+				<strong>{{errorMessage}}</strong>
 			</div>
 		</div>
-		</#if>
 		<div class="login-box">
 			<div class="login-logo">
 				<a href="/"><b>PAY</b>CR</a>
 			</div>
 			<div class="login-box-body">
 				<p class="login-box-msg">Register to start using PayCr</p>
-				<form action="/register" method="POST">
+				<form>
 					<div class="form-group has-feedback">
-						<input name="name" type="text" class="form-control" placeholder="Business Name" required>
+						<input name="name" ng-model="registerData.name" class="form-control" placeholder="Business Name" required>
 						<span class="glyphicon glyphicon-user form-control-feedback"></span>
 					</div>
 					<div class="form-group has-feedback">
-						<input name="email" type="email" class="form-control" placeholder="Email" required>
+						<input name="email" ng-model="registerData.email" class="form-control" placeholder="Email" required>
 						<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 					</div>
 					<div class="form-group has-feedback">
-						<input name="mobile" type="number" class="form-control" placeholder="Mobile" required>
+						<input name="mobile" type="number" ng-model="registerData.mobile" class="form-control" placeholder="Mobile" required>
 						<span class="glyphicon glyphicon-phone form-control-feedback"></span>
 					</div>
 					<div class="row">
@@ -48,7 +51,7 @@
 							</div>
 						</div>
 						<div class="col-sm-4">
-							<input type="submit" id="registerBtn" class="btn btn-success btn-block btn-flat" value="Register" disabled/>
+							<button id="registerBtn" ng-click="register()" class="btn btn-success btn-block btn-flat" disabled>Register</button>
 						</div>
 					</div>
 				</form>

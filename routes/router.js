@@ -1,16 +1,39 @@
 var express = require('express');
 var router = express.Router();
-var appUrl = "http://localhost:9090";
 router.get('/', function(req, res, next) {
-    res.render('index', { appUrl : appUrl });
+    res.render('index', { title : "PayCr" });
+});
+
+router.get('/terms', function (req, res, next) {
+    res.render('terms', { title: "PayCr" });
+});
+
+router.get('/policy', function (req, res, next) {
+    res.render('policy', { title: "PayCr" });
+});
+
+router.get('/register', function (req, res, next) {
+    res.render('register', { title: "PayCr" });
+});
+
+router.get('/register-success', function (req, res, next) {
+    res.render('register-success', { title: "PayCr" });
+});
+
+router.get('/contactus-success', function (req, res, next) {
+    res.render('contactus-success', { title: "PayCr" });
 });
 
 router.get('/login', function(req, res, next) {
-    res.render('login', { appUrl : appUrl });
+    res.render('login', { title: "PayCr" });
 });
 
 router.get('/adminlogin', function(req, res, next) {
-    res.render('adminlogin', { appUrl : appUrl });
+    res.render('adminlogin', { title: "PayCr" });
+});
+
+router.get('/forgot-password', function (req, res, next) {
+    res.render('forgot-password', { title: "PayCr" });
 });
 
 router.get('/admin', function (req, res, next) {
@@ -19,7 +42,7 @@ router.get('/admin', function (req, res, next) {
         res.redirect('/adminlogin');
     } else {
         console.log('admin access_token: ', accessToken);
-        res.render('admin/admin', { appUrl: appUrl });
+        res.render('admin/admin', { title: "PayCr" });
     }
 });
 
@@ -29,7 +52,7 @@ router.get('/merchant', function (req, res, next) {
         res.redirect('/login');
     } else {
         console.log('merchant access_token: ', accessToken);
-        res.render('merchant/merchant', { appUrl: appUrl });
+        res.render('merchant/merchant', { title: "PayCr" });
     }
 });
 

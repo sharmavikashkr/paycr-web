@@ -66,7 +66,8 @@ function($scope, $rootScope, envService, $http, $cookies, $timeout) {
 	$scope.templateUrl = function(folder, page) {
 		return '/html/' + folder + '/' + page +'.html';
 	}
-	$scope.prepare = function() {
+    $scope.prepare = function () {
+        $scope.check();
 		$scope.fetchUser();
 		$scope.fetchNotifications();
 		$scope.fetchEnums();
@@ -128,7 +129,21 @@ function($scope, $rootScope, envService, $http, $cookies, $timeout) {
 		}, function(data) {
 			$scope.serverMessage(data);
 		});
-	}
+    }
+    $scope.check = function () {
+        var req = {
+            method: 'GET',
+            url: envService.read('apiUrl') + "/admin/check",
+            headers: {
+                "Authorization": "Bearer "
+                + $cookies.get("access_token")
+            }
+        }
+        $http(req).then(function (data) {
+        }, function (data) {
+            $scope.serverMessage(data);
+        });
+    }
 	$scope.fetchUser = function() {
 		var req = {
 			method : 'GET',
@@ -176,8 +191,6 @@ function($scope, $rootScope, envService, $http, $cookies, $timeout) {
 	}
 	$scope.logout = function() {
 		$cookies.put("access_token", "");
-		$timeout(function(){
-			window.location.href="/adminlogin?logout";
-		}, 1000);
+		window.location.href="/adminlogin?logout";
 	}
 });
