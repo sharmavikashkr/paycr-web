@@ -34,10 +34,9 @@ app.controller('ProfileController', function($scope, $rootScope, envService, $ht
 			method : 'POST',
 			url : envService.read('apiUrl') + "/contactUs/new",
 			headers : {
-				"Authorization" : "Bearer " + $cookies.get("access_token"),
-				"Content-type" : "application/x-www-form-urlencoded; charset=utf-8"
+				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
-			data : $httpParamSerializer($scope.newissue)
+			data : $scope.newissue
 		}
 		$http(req).then(function(data) {
 			$scope.serverMessage(data);

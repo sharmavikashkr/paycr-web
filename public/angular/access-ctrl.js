@@ -29,7 +29,9 @@ app.controller('AccessController', function($scope, envService, $http, $cookies,
 		email : "",
 		password : ""
     };
-    $scope.forgotEmail = "";
+    $scope.forgotEmail = {
+        email : ""
+    };
     $scope.contactData = {
         name: "",
         email: "",

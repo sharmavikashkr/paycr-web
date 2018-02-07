@@ -36,6 +36,10 @@ router.get('/forgot-password', function (req, res, next) {
     res.render('forgot-password', { title: "PayCr" });
 });
 
+router.get('/reset-success', function (req, res, next) {
+    res.render('reset-success', { title: "PayCr" });
+});
+
 router.get('/admin', function (req, res, next) {
     var accessToken = req.cookies.access_token;
     if (accessToken == null || accessToken == '') {
