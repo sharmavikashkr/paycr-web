@@ -1,4 +1,4 @@
-app.controller('MyInvoicesController', function($scope, $rootScope, envService, $http, $cookies) {
+app.controller('MyInvoicesController', function ($scope, $rootScope, $rootScope, envService, $http, $cookies) {
 	$scope.fetchMyInvoices = function() {
 		var req = {
 			method : 'GET',

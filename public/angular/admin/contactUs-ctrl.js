@@ -1,4 +1,4 @@
-app.controller('ContactUsController', function($scope, envService, $http, $cookies, $httpParamSerializer) {
+app.controller('ContactUsController', function ($scope, $rootScope, envService, $http, $cookies, $httpParamSerializer) {
 	$scope.searchContactUsReq = {};
 	$scope.searchPage = function(page) {
 		$scope.searchContactUs(page);

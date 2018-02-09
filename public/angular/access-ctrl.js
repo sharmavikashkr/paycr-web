@@ -23,7 +23,7 @@ app.config(function(envServiceProvider) {
 	});
 	envServiceProvider.check();
 });
-app.controller('AccessController', function ($scope, envService, $http, $cookies, $httpParamSerializer) {
+app.controller('AccessController', function ($scope, $rootScope, envService, $http, $cookies, $httpParamSerializer) {
     $rootScope.appUrl = envService.read('apiUrl');
     $scope.invalidcreds = false;
     $scope.isError = false;
