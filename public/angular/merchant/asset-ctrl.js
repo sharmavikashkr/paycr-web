@@ -6,7 +6,7 @@ app.controller('AssetController', function($scope, $rootScope, envService, $http
 	$rootScope.searchAsset = function() {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/expense/search/asset",
+			url : $rootScope.appUrl + "/expense/search/asset",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -40,7 +40,7 @@ app.controller('AssetController', function($scope, $rootScope, envService, $http
 	$scope.updateAsset = function(asset) {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/asset/update/" + asset.id,
+			url : $rootScope.appUrl + "/asset/update/" + asset.id,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -59,7 +59,7 @@ app.controller('AssetController', function($scope, $rootScope, envService, $http
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/asset/new",
+			url : $rootScope.appUrl + "/asset/new",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -77,7 +77,7 @@ app.controller('AssetController', function($scope, $rootScope, envService, $http
 	$scope.updateBulkAssetUploads = function() {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/asset/bulk/uploads/all",
+			url : $rootScope.appUrl + "/asset/bulk/uploads/all",
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -95,7 +95,7 @@ app.controller('AssetController', function($scope, $rootScope, envService, $http
 		}
 		var fd = new FormData();
 		fd.append("asset", files[0]);
-		$http.post(envService.read('apiUrl') + "/asset/bulk/upload", fd, {
+		$http.post($rootScope.appUrl + "/asset/bulk/upload", fd, {
 			transformRequest : angular.identity,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token"),
@@ -111,7 +111,7 @@ app.controller('AssetController', function($scope, $rootScope, envService, $http
 	$scope.fetchAssetStats = function(asset) {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/asset/stats/" + asset.id,
+			url : $rootScope.appUrl + "/asset/stats/" + asset.id,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}

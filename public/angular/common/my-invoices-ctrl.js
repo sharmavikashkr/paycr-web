@@ -2,7 +2,7 @@ app.controller('MyInvoicesController', function($scope, $rootScope, envService, 
 	$scope.fetchMyInvoices = function() {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/user/invoices/",
+			url : $rootScope.appUrl + "/user/invoices/",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}

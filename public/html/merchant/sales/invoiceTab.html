@@ -155,7 +155,7 @@
 											<button ng-if="invoice.note != null" ng-click="updateInvoiceInfo(invoice)" title="Note" class="btn btn-flat bg-red btn-md" data-toggle="modal" data-target="#noteModal">
 												<i class="fa fa-undo"></i>
 											</button>
-											<a title="Download Pdf" class="btn btn-flat bg-navy btn-md" href="#" ng-click="newTab('/invoice/receipt/' + invoice.invoiceCode)">
+											<a title="Download Pdf" class="btn btn-flat bg-navy btn-md" href="{{appUrl}}/invoice/receipt/{{invoice.invoiceCode}}" target="_blank">
 												<i class="fa fa-file-pdf-o"></i>
 											</a>
 											<button ng-click="updateInvoiceInfo(invoice)" title="Attachments" class="btn btn-flat bg-maroon btn-md" data-toggle="modal" data-target="#invoiceAttachmentModal">

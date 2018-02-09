@@ -2,7 +2,7 @@ app.controller('UsersController', function($scope, $rootScope, envService, $http
 	$rootScope.fetchMyUsers = function() {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/user/getAll",
+			url : $rootScope.appUrl + "/user/getAll",
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -20,7 +20,7 @@ app.controller('UsersController', function($scope, $rootScope, envService, $http
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/user/new",
+			url : $rootScope.appUrl + "/user/new",
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -39,7 +39,7 @@ app.controller('UsersController', function($scope, $rootScope, envService, $http
 	$scope.toggleUser = function(userId) {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/user/toggle/" + userId,
+			url : $rootScope.appUrl + "/user/toggle/" + userId,
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")

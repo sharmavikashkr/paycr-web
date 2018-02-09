@@ -26,8 +26,8 @@ app.config(function($mdDateLocaleProvider, envServiceProvider) {
     });
 	envServiceProvider.check();
 });
-app.controller('AdminController',
-function($scope, $rootScope, envService, $http, $cookies, $timeout) {
+app.controller('AdminController', function ($scope, $rootScope, envService, $http, $cookies, $timeout) {
+    $rootScope.appUrl = envService.read('apiUrl');
 	$rootScope.hideSpinner = false;
 	$scope.server = {
 		"hideMessage" : true,
@@ -66,14 +66,6 @@ function($scope, $rootScope, envService, $http, $cookies, $timeout) {
 	}
 	$scope.templateUrl = function(folder, page) {
 		return '/html/' + folder + '/' + page +'.html';
-    }
-    $scope.newTab = function (newref) {
-        var win = window.open(envService.read('apiUrl') + newref, '_blank');
-        if (win) {
-            win.focus();
-        } else {
-            alert('Please allow popups for this website');
-        }
     }
     $scope.prepare = function () {
         $scope.check();

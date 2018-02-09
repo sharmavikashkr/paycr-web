@@ -8,7 +8,7 @@ app.controller('InvoiceController', function($scope, envService, $http, $rootSco
 	$rootScope.searchInvoice = function() {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/invoice/search/invoice",
+			url : $rootScope.appUrl + "/invoice/search/invoice",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -46,7 +46,7 @@ app.controller('InvoiceController', function($scope, envService, $http, $rootSco
 		$rootScope.invoicePayInfo = angular.copy(invoice);
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/invoice/payments/" + invoice.invoiceCode,
+			url : $rootScope.appUrl + "/invoice/payments/" + invoice.invoiceCode,
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -87,7 +87,7 @@ app.controller('InvoiceController', function($scope, envService, $http, $rootSco
 		$rootScope.timelineInvoice = invoice;
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/common/timeline/INVOICE/"+invoice.id,
+			url : $rootScope.appUrl + "/common/timeline/INVOICE/"+invoice.id,
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")

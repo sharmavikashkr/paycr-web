@@ -19,7 +19,7 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 	$rootScope.searchConsumer = function() {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/invoice/search/consumer",
+			url : $rootScope.appUrl + "/invoice/search/consumer",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -54,7 +54,7 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 	$scope.updateConsumer = function(consumer) {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/consumer/update/" + consumer.id,
+			url : $rootScope.appUrl + "/consumer/update/" + consumer.id,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -74,7 +74,7 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 		this.updateConsumerReq.searchReq = $rootScope.searchConsumerReq;
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/consumer/update/category",
+			url : $rootScope.appUrl + "/consumer/update/category",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -93,7 +93,7 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/consumer/new",
+			url : $rootScope.appUrl + "/consumer/new",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -111,7 +111,7 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 	$scope.updateBulkConsumerUploads = function() {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/consumer/bulk/uploads/all",
+			url : $rootScope.appUrl + "/consumer/bulk/uploads/all",
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -129,7 +129,7 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 		}
 		var fd = new FormData();
 		fd.append("consumers", files[0]);
-		$http.post(envService.read('apiUrl') + "/consumer/bulk/upload", fd, {
+		$http.post($rootScope.appUrl + "/consumer/bulk/upload", fd, {
 			transformRequest : angular.identity,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token"),
@@ -145,7 +145,7 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 	$rootScope.fetchCategories = function() {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/consumer/categories",
+			url : $rootScope.appUrl + "/consumer/categories",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}
@@ -160,7 +160,7 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 	$rootScope.fetchCategoryValues = function(name) {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/consumer/category/" + name,
+			url : $rootScope.appUrl + "/consumer/category/" + name,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}
@@ -174,7 +174,7 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 	$rootScope.fetchUpdateCategoryValues = function(name) {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/consumer/category/" + name,
+			url : $rootScope.appUrl + "/consumer/category/" + name,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}
@@ -188,7 +188,7 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 	$rootScope.fetchNewCategoryValues = function(name) {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/consumer/category/" + name,
+			url : $rootScope.appUrl + "/consumer/category/" + name,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}
@@ -202,7 +202,7 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 	$scope.addCategory = function(consumerId, newConCat) {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/consumer/category/new/" + consumerId,
+			url : $rootScope.appUrl + "/consumer/category/new/" + consumerId,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -221,7 +221,7 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 		}
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/consumer/category/delete/" + consumerId + "/" + conCatId,
+			url : $rootScope.appUrl + "/consumer/category/delete/" + consumerId + "/" + conCatId,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}
@@ -264,7 +264,7 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/consumer/address/update/" + editAddress.consumerId,
+			url : $rootScope.appUrl + "/consumer/address/update/" + editAddress.consumerId,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},

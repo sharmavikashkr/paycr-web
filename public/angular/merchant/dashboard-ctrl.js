@@ -3,7 +3,7 @@ app.controller('DashboardController', function($scope, $rootScope, envService, $
 	$rootScope.loadDashboard = function() {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/merchant/dashboard/" + $scope.timeRange,
+			url : $rootScope.appUrl + "/merchant/dashboard/" + $scope.timeRange,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}

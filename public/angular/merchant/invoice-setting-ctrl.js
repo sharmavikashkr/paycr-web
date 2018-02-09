@@ -2,7 +2,7 @@ app.controller('InvoiceSettingController', function($scope, $rootScope, envServi
 	$scope.savePaymentSetting = function(paymentSetting) {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/merchant/paymentsetting/update",
+			url : $rootScope.appUrl + "/merchant/paymentsetting/update",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -18,7 +18,7 @@ app.controller('InvoiceSettingController', function($scope, $rootScope, envServi
 	$scope.saveInvoiceSetting = function(invoiceSetting) {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/merchant/invoicesetting/update",
+			url : $rootScope.appUrl + "/merchant/invoicesetting/update",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -38,7 +38,7 @@ app.controller('InvoiceSettingController', function($scope, $rootScope, envServi
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/merchant/customParam/new/",
+			url : $rootScope.appUrl + "/merchant/customParam/new/",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -59,7 +59,7 @@ app.controller('InvoiceSettingController', function($scope, $rootScope, envServi
 		}
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/merchant/customParam/delete/" + paramId,
+			url : $rootScope.appUrl + "/merchant/customParam/delete/" + paramId,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}

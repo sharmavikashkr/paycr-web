@@ -6,7 +6,7 @@ app.controller('InventoryController', function($scope, $rootScope, envService, $
 	$rootScope.searchInventory = function() {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/invoice/search/inventory",
+			url : $rootScope.appUrl + "/invoice/search/inventory",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -40,7 +40,7 @@ app.controller('InventoryController', function($scope, $rootScope, envService, $
 	$scope.updateInventory = function(inventory) {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/inventory/update/" + inventory.id,
+			url : $rootScope.appUrl + "/inventory/update/" + inventory.id,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -59,7 +59,7 @@ app.controller('InventoryController', function($scope, $rootScope, envService, $
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/inventory/new",
+			url : $rootScope.appUrl + "/inventory/new",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -77,7 +77,7 @@ app.controller('InventoryController', function($scope, $rootScope, envService, $
 	$scope.updateBulkInventoryUploads = function() {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/inventory/bulk/uploads/all",
+			url : $rootScope.appUrl + "/inventory/bulk/uploads/all",
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -95,7 +95,7 @@ app.controller('InventoryController', function($scope, $rootScope, envService, $
 		}
 		var fd = new FormData();
 		fd.append("inventory", files[0]);
-		$http.post(envService.read('apiUrl') + "/inventory/bulk/upload", fd, {
+		$http.post($rootScope.appUrl + "/inventory/bulk/upload", fd, {
 			transformRequest : angular.identity,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token"),
@@ -111,7 +111,7 @@ app.controller('InventoryController', function($scope, $rootScope, envService, $
 	$scope.fetchInventoryStats = function(inventory) {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/inventory/stats/" + inventory.id,
+			url : $rootScope.appUrl + "/inventory/stats/" + inventory.id,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}

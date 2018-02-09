@@ -13,7 +13,7 @@
 					<thead>
 						<tr>
 							<th class="text-center">Code</th>
-							<th class="text-center">Name</th>
+							<th class="text-center hidden-xs">Name</th>
 							<th class="text-center">Duration</th>
 							<th class="text-center">Rate</th>
 							<th class="text-center">Limit</th>
@@ -27,7 +27,7 @@
 					<tbody>
 						<tr ng-class="(pricing.active)?'success':'warning'" ng-repeat="pricing in pricings" title="ACTIVE = {{pricing.active}}">
 							<td>{{pricing.code}}</td>
-							<td>{{pricing.name}}</td>
+							<td class="hidden-xs">{{pricing.name}}</td>
 							<td>{{pricing.duration}}</td>
 							<td><i class="fa fa-rupee"></i> {{pricing.rate}}</td>
 							<td>{{pricing.limit}}</td>

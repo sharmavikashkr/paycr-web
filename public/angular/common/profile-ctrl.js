@@ -12,7 +12,7 @@ app.controller('ProfileController', function($scope, $rootScope, envService, $ht
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/profile/update/address",
+			url : $rootScope.appUrl + "/profile/update/address",
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -32,7 +32,7 @@ app.controller('ProfileController', function($scope, $rootScope, envService, $ht
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/contactUs/new",
+			url : $rootScope.appUrl + "/contactUs/new",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -57,7 +57,7 @@ app.controller('ProfileController', function($scope, $rootScope, envService, $ht
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/profile/change/password",
+			url : $rootScope.appUrl + "/profile/change/password",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token"),
 				"Content-type" : "application/x-www-form-urlencoded; charset=utf-8"

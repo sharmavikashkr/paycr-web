@@ -8,7 +8,7 @@ app.controller('MerchantController', function($scope, $rootScope, envService, $h
 	$rootScope.searchMerchant = function() {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/admin/search/merchant",
+			url : $rootScope.appUrl + "/admin/search/merchant",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -43,7 +43,7 @@ app.controller('MerchantController', function($scope, $rootScope, envService, $h
 	$scope.fetchSubscriptionDetails = function(pricingId) {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/subscription/get/" + pricingId,
+			url : $rootScope.appUrl + "/subscription/get/" + pricingId,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}
@@ -69,7 +69,7 @@ app.controller('MerchantController', function($scope, $rootScope, envService, $h
 		this.offlinesubs.pricingId = this.offlinesubs.pricing.id; 
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/subscription/new/offline",
+			url : $rootScope.appUrl + "/subscription/new/offline",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -89,7 +89,7 @@ app.controller('MerchantController', function($scope, $rootScope, envService, $h
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/admin/merchant/new",
+			url : $rootScope.appUrl + "/admin/merchant/new",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},

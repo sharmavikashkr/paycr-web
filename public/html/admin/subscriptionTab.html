@@ -87,7 +87,7 @@
 								<div style="padding:10px" class="accordion-body collapse" id="subsdetails-{{subs.id}}">
 									<div class="row">
 										<div class="col-md-6">
-											<a title="Downlaod PDF" class="btn btn-flat btn-default btn-md" href="#" ng-click="newTab('/subscription/receipt/' + subs.subscriptionCode)">
+											<a title="Downlaod PDF" class="btn btn-flat btn-default btn-md" href="{{appUrl}}/subscription/receipt/{{subs.subscriptionCode}}">
 												<i class="fa fa-file-pdf-o"></i>
 											</a>
 										</div>

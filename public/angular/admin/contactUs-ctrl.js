@@ -7,7 +7,7 @@ app.controller('ContactUsController', function($scope, envService, $http, $cooki
 		$scope.searchContactUsReq.page = page;
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/contactUs/search",
+			url : $rootScope.appUrl + "/contactUs/search",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token"),
 				"Content-type" : "application/x-www-form-urlencoded; charset=utf-8"
@@ -25,7 +25,7 @@ app.controller('ContactUsController', function($scope, envService, $http, $cooki
 	$scope.toggleStatus = function(contactUsId) {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/contactUs/toggle/" + contactUsId,
+			url : $rootScope.appUrl + "/contactUs/toggle/" + contactUsId,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}

@@ -26,7 +26,8 @@ app.config(function($mdDateLocaleProvider, envServiceProvider) {
     });
 	envServiceProvider.check();
 });
-app.controller('MerchantController', function($scope, $rootScope, envService, $http, $cookies, $timeout) {
+app.controller('MerchantController', function ($scope, $rootScope, envService, $http, $cookies, $timeout) {
+    $rootScope.appUrl = envService.read('apiUrl');
 	$rootScope.hideSpinner = false;
 	var dateNow = moment().toDate();
 	var dateStart = moment().subtract(30, 'day').toDate();
@@ -107,14 +108,6 @@ app.controller('MerchantController', function($scope, $rootScope, envService, $h
 	}
 	$scope.templateUrl = function(folder, page) {
 		return '/html/' + folder + '/' + page +'.html';
-	}
-	$scope.newTab = function(newref) {
-		var win = window.open(envService.read('apiUrl') + newref, '_blank');
-		if (win) {
-			win.focus();
-		} else {
-			alert('Please allow popups for this website');
-		}
 	}
     $scope.prepare = function () {
         $scope.check();

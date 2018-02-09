@@ -3,7 +3,7 @@ app.controller('AdminSettingController', function($scope, $rootScope, envService
 	$rootScope.loadAdminSetting = function() {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/admin/setting",
+			url : $rootScope.appUrl + "/admin/setting",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}
@@ -17,7 +17,7 @@ app.controller('AdminSettingController', function($scope, $rootScope, envService
 	$scope.saveAdminSetting = function(adminSetting) {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/admin/setting/update",
+			url : $rootScope.appUrl + "/admin/setting/update",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -36,7 +36,7 @@ app.controller('AdminSettingController', function($scope, $rootScope, envService
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/admin/setting/address/new",
+			url : $rootScope.appUrl + "/admin/setting/address/new",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -55,7 +55,7 @@ app.controller('AdminSettingController', function($scope, $rootScope, envService
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/admin/setting/tax/new",
+			url : $rootScope.appUrl + "/admin/setting/tax/new",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -75,7 +75,7 @@ app.controller('AdminSettingController', function($scope, $rootScope, envService
 		}
 		var fd = new FormData();
 		fd.append("banner", files[0]);
-		$http.post(envService.read('apiUrl') + "/banner/upload", fd, {
+		$http.post($rootScope.appUrl + "/banner/upload", fd, {
 			transformRequest : angular.identity,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token"),

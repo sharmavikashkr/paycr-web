@@ -2,7 +2,7 @@ app.controller('PricingController', function($scope, $rootScope, envService, $ht
 	$rootScope.fetchPricings = function() {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/common/pricings",
+			url : $rootScope.appUrl + "/common/pricings",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}

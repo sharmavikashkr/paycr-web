@@ -2,7 +2,7 @@ app.controller('GstSettingController', function($scope, $rootScope, envService, 
 	$scope.saveGstSetting = function(gstSetting) {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/merchant/gstsetting/update",
+			url : $rootScope.appUrl + "/merchant/gstsetting/update",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},

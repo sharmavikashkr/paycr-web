@@ -8,7 +8,7 @@ app.controller('InvoicePaymentController', function($scope, $rootScope, envServi
 	$rootScope.searchInvoicePayment = function() {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/invoice/search/payment",
+			url : $rootScope.appUrl + "/invoice/search/payment",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -42,7 +42,7 @@ app.controller('InvoicePaymentController', function($scope, $rootScope, envServi
 	$scope.downloadCsv = function() {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/invoice/search/payment/download",
+			url : $rootScope.appUrl + "/invoice/search/payment/download",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token"),
 				"Accept" : "text/csv"
@@ -63,7 +63,7 @@ app.controller('InvoicePaymentController', function($scope, $rootScope, envServi
 	$scope.mailCsv = function() {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/invoice/search/payment/mail",
+			url : $rootScope.appUrl + "/invoice/search/payment/mail",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},

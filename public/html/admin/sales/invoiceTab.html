@@ -126,7 +126,7 @@
 											<button ng-if="invoice.note != null" ng-click="updateInvoiceInfo(invoice)" title="Credit Note" class="btn btn-flat bg-red btn-md" data-toggle="modal" data-target="#creditNoteModal">
 												<i class="fa fa-undo"></i>
 											</button>
-											<a title="Download Pdf" class="btn btn-flat bg-navy btn-md" href="#"  ng-click="newTab('/invoice/receipt/' + invoice.invoiceCode)">
+											<a title="Download Pdf" class="btn btn-flat bg-navy btn-md" href="{{appUrl}}/invoice/receipt/{{invoice.invoiceCode}}">
 												<i class="fa fa-file-pdf-o"></i>
 											</a>
 											<button ng-if="invoice.invoiceType != 'SINGLE'" ng-click="searchChildInvoices(invoice.invoiceCode)" title="Search child invoices" class="btn btn-flat btn-warning btn-md">

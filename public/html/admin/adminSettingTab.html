@@ -7,7 +7,7 @@
 						<div class="image-upload">
 							<div class="col-xs-3">
 							    <label for="file-input" title="Upload new Banner">
-							        <img src="/banner/admin/{{adminSetting.banner}}" style="max-height:50px;max-width:50px;" alt="Banner (80x80)"/>
+							        <img src="{{appUrl}}/banner/admin/{{adminSetting.banner}}" style="max-height:50px;max-width:50px;" alt="Banner (80x80)"/>
 							    </label>
 							    <input id="file-input" style="display:none;"type="file" onchange="angular.element(this).scope().uploadBanner(this.files)" accept=".png,.jpg"/>
 						    </div>

@@ -11,7 +11,7 @@ app.controller('ExpenseController', function($scope, $rootScope, envService, $ht
 	$rootScope.searchExpense = function() {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/expense/search/expense",
+			url : $rootScope.appUrl + "/expense/search/expense",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -214,7 +214,7 @@ app.controller('ExpenseController', function($scope, $rootScope, envService, $ht
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/expense/new",
+			url : $rootScope.appUrl + "/expense/new",
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -234,7 +234,7 @@ app.controller('ExpenseController', function($scope, $rootScope, envService, $ht
 		$rootScope.expensePayInfo = angular.copy(expense);
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/expense/payments/" + expense.expenseCode,
+			url : $rootScope.appUrl + "/expense/payments/" + expense.expenseCode,
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -258,7 +258,7 @@ app.controller('ExpenseController', function($scope, $rootScope, envService, $ht
 		refundRequest.expenseCode = expenseCode;
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/expense/refund",
+			url : $rootScope.appUrl + "/expense/refund",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token"),
 		        "Content-type": "application/x-www-form-urlencoded; charset=utf-8"
@@ -280,7 +280,7 @@ app.controller('ExpenseController', function($scope, $rootScope, envService, $ht
 		this.markpaid.expenseCode = expenseCode;
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/expense/markpaid",
+			url : $rootScope.appUrl + "/expense/markpaid",
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -302,7 +302,7 @@ app.controller('ExpenseController', function($scope, $rootScope, envService, $ht
 		var expenseCode = this.expenseInfo.expenseCode;
 		var fd = new FormData();
 		fd.append("attach", files[0]);
-		$http.post(envService.read('apiUrl') + "/expense/"+expenseCode+"/attachment/new", fd, {
+		$http.post($rootScope.appUrl + "/expense/"+expenseCode+"/attachment/new", fd, {
 			transformRequest : angular.identity,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token"),
@@ -333,7 +333,7 @@ app.controller('ExpenseController', function($scope, $rootScope, envService, $ht
 		$rootScope.timelineExpense = expense;
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/common/timeline/EXPENSE/"+expense.id,
+			url : $rootScope.appUrl + "/common/timeline/EXPENSE/"+expense.id,
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -352,7 +352,7 @@ app.controller('ExpenseController', function($scope, $rootScope, envService, $ht
 		timeline.objectType = 'EXPENSE';
 		var req = {
 			method : 'PUT',
-			url : envService.read('apiUrl') + "/common/timeline/new",
+			url : $rootScope.appUrl + "/common/timeline/new",
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")

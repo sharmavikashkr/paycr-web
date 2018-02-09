@@ -3,7 +3,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h5 class="modal-title"> Note for Invoice# <span><strong>{{invoiceInfo.invoiceCode}}</strong></span>&nbsp;<span><a href="#" ng-click="newTab('/note/receipt/' + invoiceInfo.note.noteCode)" title="Note Pdf" class="btn btn-sm bg-navy"><i class="fa fa-file-pdf-o"></i></a></span></h5>
+				<h5 class="modal-title"> Note for Invoice# <span><strong>{{invoiceInfo.invoiceCode}}</strong></span>&nbsp;<span><a href="{{appUrl}}/note/receipt/{{invoiceInfo.note.noteCode}}" title="Note Pdf" class="btn btn-sm bg-navy" target="_blank"><i class="fa fa-file-pdf-o"></i></a></span></h5>
 			</div>
 			<div class="modal-body">
 				<div class="row">

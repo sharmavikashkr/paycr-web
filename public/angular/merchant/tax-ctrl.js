@@ -9,7 +9,7 @@ app.controller('TaxController', function($scope, $rootScope, envService, $http, 
 	$scope.loadGstr1Report = function(period) {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/gst/gstr1/" + period,
+			url : $rootScope.appUrl + "/gst/gstr1/" + period,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}
@@ -109,7 +109,7 @@ app.controller('TaxController', function($scope, $rootScope, envService, $http, 
 	$scope.downloadGstr1Report = function(period) {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/gst/gstr1/download/" + period,
+			url : $rootScope.appUrl + "/gst/gstr1/download/" + period,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -128,7 +128,7 @@ app.controller('TaxController', function($scope, $rootScope, envService, $http, 
 	$scope.mailGstr1Report = function(period) {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/gst/gstr1/mail/" + period,
+			url : $rootScope.appUrl + "/gst/gstr1/mail/" + period,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}

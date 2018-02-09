@@ -2,7 +2,7 @@ app.controller('ReportsController', function($scope, $rootScope, envService, $ht
 	$rootScope.fetchReports = function() {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/reports",
+			url : $rootScope.appUrl + "/reports",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}
@@ -16,7 +16,7 @@ app.controller('ReportsController', function($scope, $rootScope, envService, $ht
 	$scope.createReport = function() {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/reports/new",
+			url : $rootScope.appUrl + "/reports/new",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -34,7 +34,7 @@ app.controller('ReportsController', function($scope, $rootScope, envService, $ht
 	$scope.loadReport = function(report) {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/reports/load",
+			url : $rootScope.appUrl + "/reports/load",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -91,7 +91,7 @@ app.controller('ReportsController', function($scope, $rootScope, envService, $ht
 	$scope.downloadReport = function(report) {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/reports/download",
+			url : $rootScope.appUrl + "/reports/download",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token"),
 				"Accept" : "text/csv"
@@ -112,7 +112,7 @@ app.controller('ReportsController', function($scope, $rootScope, envService, $ht
 	$scope.mailReport = function(report) {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/reports/mail",
+			url : $rootScope.appUrl + "/reports/mail",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -130,7 +130,7 @@ app.controller('ReportsController', function($scope, $rootScope, envService, $ht
 		}
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/reports/delete/" + reportId,
+			url : $rootScope.appUrl + "/reports/delete/" + reportId,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}
@@ -145,7 +145,7 @@ app.controller('ReportsController', function($scope, $rootScope, envService, $ht
 	$scope.getSchedule = function(reportId) {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/reports/schedule/get",
+			url : $rootScope.appUrl + "/reports/schedule/get",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}
@@ -160,7 +160,7 @@ app.controller('ReportsController', function($scope, $rootScope, envService, $ht
 	$scope.addSchedule = function(reportId) {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/reports/schedule/add/" + reportId,
+			url : $rootScope.appUrl + "/reports/schedule/add/" + reportId,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}
@@ -176,7 +176,7 @@ app.controller('ReportsController', function($scope, $rootScope, envService, $ht
 	$scope.removeSchedule = function(recRepUserId) {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/reports/schedule/remove/" + recRepUserId,
+			url : $rootScope.appUrl + "/reports/schedule/remove/" + recRepUserId,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}

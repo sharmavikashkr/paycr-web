@@ -11,7 +11,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 	$rootScope.searchInvoice = function() {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/invoice/search/invoice",
+			url : $rootScope.appUrl + "/invoice/search/invoice",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -286,7 +286,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/invoice/new",
+			url : $rootScope.appUrl + "/invoice/new",
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -312,7 +312,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 	$scope.createNote = function() {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/invoice/note/new",
+			url : $rootScope.appUrl + "/invoice/note/new",
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -331,7 +331,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		$rootScope.invoicePayInfo = angular.copy(invoice);
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/invoice/payments/" + invoice.invoiceCode,
+			url : $rootScope.appUrl + "/invoice/payments/" + invoice.invoiceCode,
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -346,7 +346,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 	$scope.enquireInvoice = function(invoiceCode) {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/invoice/enquire/" + invoiceCode,
+			url : $rootScope.appUrl + "/invoice/enquire/" + invoiceCode,
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -364,7 +364,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/invoice/notify/" + invoiceCode,
+			url : $rootScope.appUrl + "/invoice/notify/" + invoiceCode,
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -384,7 +384,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		}
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/invoice/expire/" + invoiceCode,
+			url : $rootScope.appUrl + "/invoice/expire/" + invoiceCode,
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -409,7 +409,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		refundRequest.invoiceCode = invoiceCode;
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/invoice/refund",
+			url : $rootScope.appUrl + "/invoice/refund",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token"),
 		        "Content-type": "application/x-www-form-urlencoded; charset=utf-8"
@@ -431,7 +431,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		this.markpaid.invoiceCode = invoiceCode;
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/invoice/markpaid",
+			url : $rootScope.appUrl + "/invoice/markpaid",
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -453,7 +453,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		var invoiceCode = this.invoiceInfo.invoiceCode;
 		var fd = new FormData();
 		fd.append("attach", files[0]);
-		$http.post(envService.read('apiUrl') + "/invoice/"+invoiceCode+"/attachment/new", fd, {
+		$http.post($rootScope.appUrl + "/invoice/"+invoiceCode+"/attachment/new", fd, {
 			transformRequest : angular.identity,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token"),
@@ -470,7 +470,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 	$scope.createChildInvoice = function(invoiceCode) {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/invoice/bulk/child/"+invoiceCode,
+			url : $rootScope.appUrl + "/invoice/bulk/child/"+invoiceCode,
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -488,7 +488,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 	$scope.createCategoryInvoice = function(invoiceCode) {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/invoice/bulk/category/"+invoiceCode,
+			url : $rootScope.appUrl + "/invoice/bulk/category/"+invoiceCode,
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -510,7 +510,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		var invoiceCode = this.bulkInvoiceInfo.invoiceCode;
 		var fd = new FormData();
 		fd.append("consumers", files[0]);
-		$http.post(envService.read('apiUrl') + "/invoice/bulk/upload/"+invoiceCode, fd, {
+		$http.post($rootScope.appUrl + "/invoice/bulk/upload/"+invoiceCode, fd, {
 			transformRequest : angular.identity,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token"),
@@ -547,7 +547,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		$rootScope.recurrInvoiceInfo = angular.copy(invoice);
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/invoice/recurr/all/"+invoice.invoiceCode,
+			url : $rootScope.appUrl + "/invoice/recurr/all/"+invoice.invoiceCode,
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -568,7 +568,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		$rootScope.bulkInvoiceInfo = angular.copy(invoice);
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/invoice/bulk/uploads/all/"+invoice.invoiceCode,
+			url : $rootScope.appUrl + "/invoice/bulk/uploads/all/"+invoice.invoiceCode,
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -582,7 +582,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/invoice/bulk/categories/"+invoice.invoiceCode,
+			url : $rootScope.appUrl + "/invoice/bulk/categories/"+invoice.invoiceCode,
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -616,7 +616,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 	$scope.recurrInvoice = function(invoiceCode) {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/invoice/recurr/new/"+invoiceCode,
+			url : $rootScope.appUrl + "/invoice/recurr/new/"+invoiceCode,
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -635,7 +635,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		$rootScope.timelineInvoice = invoice;
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/common/timeline/INVOICE/"+invoice.id,
+			url : $rootScope.appUrl + "/common/timeline/INVOICE/"+invoice.id,
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -654,7 +654,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		timeline.objectType = 'INVOICE';
 		var req = {
 			method : 'PUT',
-			url : envService.read('apiUrl') + "/common/timeline/new",
+			url : $rootScope.appUrl + "/common/timeline/new",
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")

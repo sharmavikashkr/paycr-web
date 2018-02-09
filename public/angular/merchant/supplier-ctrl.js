@@ -11,7 +11,7 @@ app.controller('SupplierController', function($scope, $rootScope, envService, $h
 	$rootScope.searchSupplier = function() {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/expense/search/supplier",
+			url : $rootScope.appUrl + "/expense/search/supplier",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -46,7 +46,7 @@ app.controller('SupplierController', function($scope, $rootScope, envService, $h
 	$scope.updateSupplier = function(supplier) {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/supplier/update/" + supplier.id,
+			url : $rootScope.appUrl + "/supplier/update/" + supplier.id,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -65,7 +65,7 @@ app.controller('SupplierController', function($scope, $rootScope, envService, $h
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/supplier/new",
+			url : $rootScope.appUrl + "/supplier/new",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -83,7 +83,7 @@ app.controller('SupplierController', function($scope, $rootScope, envService, $h
 	$scope.updateBulkSupplierUploads = function() {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/supplier/bulk/uploads/all",
+			url : $rootScope.appUrl + "/supplier/bulk/uploads/all",
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -101,7 +101,7 @@ app.controller('SupplierController', function($scope, $rootScope, envService, $h
 		}
 		var fd = new FormData();
 		fd.append("suppliers", files[0]);
-		$http.post(envService.read('apiUrl') + "/supplier/bulk/upload", fd, {
+		$http.post($rootScope.appUrl + "/supplier/bulk/upload", fd, {
 			transformRequest : angular.identity,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token"),
@@ -126,7 +126,7 @@ app.controller('SupplierController', function($scope, $rootScope, envService, $h
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/supplier/address/update/" + editAddress.supplierId,
+			url : $rootScope.appUrl + "/supplier/address/update/" + editAddress.supplierId,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},

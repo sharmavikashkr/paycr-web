@@ -23,7 +23,8 @@ app.config(function(envServiceProvider) {
 	});
 	envServiceProvider.check();
 });
-app.controller('AccessController', function($scope, envService, $http, $cookies, $httpParamSerializer) {
+app.controller('AccessController', function ($scope, envService, $http, $cookies, $httpParamSerializer) {
+    $rootScope.appUrl = envService.read('apiUrl');
     $scope.invalidcreds = false;
     $scope.isError = false;
 	$scope.user = {
@@ -49,7 +50,7 @@ app.controller('AccessController', function($scope, envService, $http, $cookies,
 	$scope.login = function() {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/secure/login",
+			url : $rootScope.appUrl + "/secure/login",
 			headers : {
 				"Content-type" : "application/x-www-form-urlencoded; charset=utf-8"
 			},
@@ -65,7 +66,7 @@ app.controller('AccessController', function($scope, envService, $http, $cookies,
     $scope.check = function () {
         var req = {
             method: 'GET',
-            url: envService.read('apiUrl') + "/merchant/check",
+            url: $rootScope.appUrl + "/merchant/check",
             headers: {
                 "Authorization": "Bearer "
                 + $cookies.get("access_token")
@@ -81,7 +82,7 @@ app.controller('AccessController', function($scope, envService, $http, $cookies,
     $scope.sendResetPassword = function () {
         var req = {
             method: 'POST',
-            url: envService.read('apiUrl') + "/sendResetPassword",
+            url: $rootScope.appUrl + "/sendResetPassword",
             headers: {
                 "Content-type": "application/x-www-form-urlencoded; charset=utf-8"
             },
@@ -98,7 +99,7 @@ app.controller('AccessController', function($scope, envService, $http, $cookies,
     $scope.contactUs = function () {
         var req = {
             method: 'POST',
-            url: envService.read('apiUrl') + "/contactUs/new",
+            url: $rootScope.appUrl + "/contactUs/new",
             headers: {
                 "Content-type": "application/json"
             },
@@ -114,7 +115,7 @@ app.controller('AccessController', function($scope, envService, $http, $cookies,
     $scope.register = function () {
         var req = {
             method: 'POST',
-            url: envService.read('apiUrl') + "/register",
+            url: $rootScope.appUrl + "/register",
             headers: {
                 "Content-type": "application/json"
             },

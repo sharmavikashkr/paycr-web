@@ -8,7 +8,7 @@ app.controller('PromotionController', function($scope, $rootScope, envService, $
 	$rootScope.searchPromotion = function() {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/admin/search/promotion",
+			url : $rootScope.appUrl + "/admin/search/promotion",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -45,7 +45,7 @@ app.controller('PromotionController', function($scope, $rootScope, envService, $
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/promotion/send",
+			url : $rootScope.appUrl + "/promotion/send",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -65,7 +65,7 @@ app.controller('PromotionController', function($scope, $rootScope, envService, $
 		}
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/promotion/notify/" + promoId,
+			url : $rootScope.appUrl + "/promotion/notify/" + promoId,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}

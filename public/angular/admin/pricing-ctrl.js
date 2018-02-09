@@ -2,7 +2,7 @@ app.controller('PricingController', function($scope, $rootScope, envService, $ht
 	$scope.fetchPricings = function() {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/common/pricings",
+			url : $rootScope.appUrl + "/common/pricings",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}
@@ -19,7 +19,7 @@ app.controller('PricingController', function($scope, $rootScope, envService, $ht
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/admin/pricing/new",
+			url : $rootScope.appUrl + "/admin/pricing/new",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -37,7 +37,7 @@ app.controller('PricingController', function($scope, $rootScope, envService, $ht
 	$scope.togglePricing = function(pricingId) {
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/admin/pricing/toggle/" + pricingId,
+			url : $rootScope.appUrl + "/admin/pricing/toggle/" + pricingId,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}
@@ -53,7 +53,7 @@ app.controller('PricingController', function($scope, $rootScope, envService, $ht
 		$rootScope.customPricing = angular.copy(pricing);
 		var req = {
 			method : 'GET',
-			url : envService.read('apiUrl') + "/admin/pricing/merchants/" + pricing.id,
+			url : $rootScope.appUrl + "/admin/pricing/merchants/" + pricing.id,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}
@@ -71,7 +71,7 @@ app.controller('PricingController', function($scope, $rootScope, envService, $ht
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/admin/pricing/merchant/add",
+			url : $rootScope.appUrl + "/admin/pricing/merchant/add",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token"),
 				"Content-type": "application/x-www-form-urlencoded; charset=utf-8"
@@ -92,7 +92,7 @@ app.controller('PricingController', function($scope, $rootScope, envService, $ht
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/admin/pricing/merchant/remove",
+			url : $rootScope.appUrl + "/admin/pricing/merchant/remove",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token"),
 				"Content-type": "application/x-www-form-urlencoded; charset=utf-8"

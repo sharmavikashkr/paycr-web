@@ -8,7 +8,7 @@ app.controller('SubscriptionController', function($scope, $rootScope, envService
 	$rootScope.searchSubscription = function() {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/admin/search/subscription",
+			url : $rootScope.appUrl + "/admin/search/subscription",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},

@@ -2,7 +2,7 @@ app.controller('AccountController', function($scope, $rootScope, envService, $ht
 	$scope.updateAccount = function() {
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/merchant/account/update",
+			url : $rootScope.appUrl + "/merchant/account/update",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -21,7 +21,7 @@ app.controller('AccountController', function($scope, $rootScope, envService, $ht
 		}
 		var req = {
 			method : 'POST',
-			url : envService.read('apiUrl') + "/merchant/address/update",
+			url : $rootScope.appUrl + "/merchant/address/update",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -41,7 +41,7 @@ app.controller('AccountController', function($scope, $rootScope, envService, $ht
 		}
 		var fd = new FormData();
 		fd.append("banner", files[0]);
-		$http.post(envService.read('apiUrl') + "/banner/upload", fd, {
+		$http.post($rootScope.appUrl + "/banner/upload", fd, {
 			transformRequest : angular.identity,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token"),
