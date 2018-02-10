@@ -20,10 +20,12 @@
 	    <div ng-if="user.access.finance" ng-include="templateUrl('merchant/purchases','addExpenseItemXsModal')"></div>
 	    <div ng-if="user.access.finance" ng-include="templateUrl('merchant/purchases','markExpensePaidModal')"></div>
 		<div ng-if="user.access.finance" ng-include="templateUrl('merchant/purchases','expenseRefundModal')"></div>
+        <div ng-if="user.access.finance" ng-include="templateUrl('merchant/purchases','createExpenseNoteModal')"></div>
 		<div ng-if="user.access.finance" ng-include="templateUrl('merchant/purchases','bulkSupplierUploadModal')"></div>
 		<div ng-if="user.access.finance" ng-include="templateUrl('merchant/purchases','editSupAddressModal')"></div>
 		<div ng-if="user.access.finance" ng-include="templateUrl('merchant/purchases','bulkAssetUploadModal')"></div>
 		<div ng-include="templateUrl('merchant/purchases','expenseInfoModal')"></div>
+        <div ng-include="templateUrl('merchant/purchases','expenseNoteModal')"></div>
 		<div ng-include="templateUrl('merchant/purchases','expensePaymentModal')"></div>
 		<div ng-include="templateUrl('merchant/purchases','expenseAttachmentModal')"></div>
 		<div ng-include="templateUrl('merchant/purchases','expenseTimelineModal')"></div>

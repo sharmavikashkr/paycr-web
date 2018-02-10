@@ -38,7 +38,7 @@
 						<table class="table table-bordered">
 							<thead>
 								<tr>
-									<th class="text-center">Supply Type</th>
+									<th class="text-center hidden-xs">Supply Type</th>
 									<th class="text-center">Gst Rate</th>
 									<th class="text-center">Taxable Amount</th>
 									<th class="text-center">CGST Amount</th>
@@ -48,7 +48,7 @@
 							</thead>
 							<tbody id="itemBody">
 								<tr class="bg-olive" ng-repeat="b2cSmall in gstr1ReportResp.b2cSmall">
-									<td>{{b2cSmall.supplyType}}</td>
+									<td class="hidden-xs">{{b2cSmall.supplyType}}</td>
 									<td>{{b2cSmall.gstRate}}</td>
 									<td>{{b2cSmall.taxableAmount}}</td>
 									<td>{{b2cSmall.cgstAmount}}</td>
@@ -75,8 +75,8 @@
 									<th class="text-center">Invoice No</th>
 									<th class="text-center">Taxable Amount</th>
 									<th class="text-center">Invoice Amount</th>
-									<th class="text-center">Invoice Date</th>
-									<th class="text-center">Place Of Supply</th>
+									<th class="text-center hidden-xs">Invoice Date</th>
+									<th class="text-center hidden-xs">Place Of Supply</th>
 									<th class="text-center hidden-xs">Supply Type</th>
 									<th class="text-center hidden-xs">Tax</th>
 								</tr>
@@ -86,8 +86,8 @@
 									<td>{{b2cLarge.invoiceNo}}</td>
 									<td>{{b2cLarge.taxableAmount}}</td>
 									<td>{{b2cLarge.invoiceAmount}}</td>
-									<td>{{b2cLarge.invoiceDate | date:'dd-MM-yyyy'}}</td>
-									<td>{{b2cLarge.placeOfSupply}}</td>
+									<td class="hidden-xs">{{b2cLarge.invoiceDate | date:'dd-MM-yyyy'}}</td>
+									<td class="hidden-xs">{{b2cLarge.placeOfSupply}}</td>
 									<td class="hidden-xs">{{b2cLarge.supplyType}}</td>
 									<td class="hidden-xs"><div ng-repeat="taxAmt in b2cLarge.taxAmount">{{taxAmt.tax.name}} {{taxAmt.tax.value}}% - {{taxAmt.amount}}</div></td>
 								</tr>
@@ -108,11 +108,11 @@
 						<table class="table table-bordered">
 							<thead>
 								<tr>
-									<th class="text-center">GSTIN</th>
+									<th class="text-center hidden-xs">GSTIN</th>
 									<th class="text-center">Invoice No</th>
 									<th class="text-center">Taxable Amount</th>
 									<th class="text-center">Invoice Amount</th>
-									<th class="text-center">Invoice Date</th>
+									<th class="text-center hidden-xs">Invoice Date</th>
 									<th class="text-center hidden-xs">Place Of Supply</th>
 									<th class="text-center hidden-xs">Supply Type</th>
 									<th class="text-center hidden-xs">Tax</th>
@@ -120,11 +120,11 @@
 							</thead>
 							<tbody id="itemBody">
 								<tr class="bg-olive" ng-repeat="b2b in gstr1ReportResp.b2b">
-									<td>{{b2b.gstin}}</td>
+									<td class="hidden-xs">{{b2b.gstin}}</td>
 									<td>{{b2b.invoiceNo}}</td>
 									<td>{{b2b.taxableAmount}}</td>
 									<td>{{b2b.invoiceAmount}}</td>
-									<td>{{b2b.invoiceDate | date:'dd-MM-yyyy'}}</td>
+									<td class="hidden-xs">{{b2b.invoiceDate | date:'dd-MM-yyyy'}}</td>
 									<td class="hidden-xs">{{b2b.placeOfSupply}}</td>
 									<td class="hidden-xs">{{b2b.supplyType}}</td>
 									<td class="hidden-xs"><div ng-repeat="taxAmt in b2b.taxAmount">{{taxAmt.tax.name}} {{taxAmt.tax.value}}% - {{taxAmt.amount}}</div></td>
@@ -146,13 +146,13 @@
 						<table class="table table-bordered">
 							<thead>
 								<tr>
-									<th class="text-center">GSTIN</th>
+									<th class="text-center hidden-xs">GSTIN</th>
 									<th class="text-center">Note No</th>
 									<th class="text-center">Taxable Amount</th>
 									<th class="text-center">Note Amount</th>
-									<th class="text-center">Note Date</th>
+									<th class="text-center hidden-xs">Note Date</th>
 									<th class="text-center">Note Type</th>
-									<th class="text-center">Invoice No</th>
+									<th class="text-center hidden-xs">Invoice No</th>
 									<th class="text-center hidden-xs">Invoice Date</th>
 									<th class="text-center hidden-xs">Supply Type</th>
 									<th class="text-center hidden-xs">Note Reason</th>
@@ -161,13 +161,13 @@
 							</thead>
 							<tbody id="itemBody">
 								<tr class="bg-olive" ng-repeat="b2cNote in gstr1ReportResp.b2cNote">
-									<td>{{b2cNote.gstin}}</td>
+									<td class="hidden-xs">{{b2cNote.gstin}}</td>
 									<td>{{b2cNote.noteNo}}</td>
 									<td>{{b2cNote.taxableAmount}}</td>
 									<td>{{b2cNote.noteAmount}}</td>
-									<td>{{b2cNote.noteDate | date:'dd-MM-yyyy'}}</td>
+									<td class="hidden-xs">{{b2cNote.noteDate | date:'dd-MM-yyyy'}}</td>
 									<td>{{b2cNote.noteType}}</td>
-									<td>{{b2cNote.invoiceNo}}</td>
+									<td class="hidden-xs">{{b2cNote.invoiceNo}}</td>
 									<td class="hidden-xs">{{b2cNote.invoiceDate | date:'dd-MM-yyyy'}}</td>
 									<td class="hidden-xs">{{b2cNote.supplyType}}</td>
 									<td class="hidden-xs">{{b2cNote.noteReason}}</td>
@@ -190,13 +190,13 @@
 						<table class="table table-bordered">
 							<thead>
 								<tr>
-									<th class="text-center">GSTIN</th>
+									<th class="text-center hidden-xs">GSTIN</th>
 									<th class="text-center">Note No</th>
 									<th class="text-center">Taxable Amount</th>
 									<th class="text-center">Note Amount</th>
-									<th class="text-center">Note Date</th>
+									<th class="text-center hidden-xs">Note Date</th>
 									<th class="text-center">Note Type</th>
-									<th class="text-center">Invoice No</th>
+									<th class="text-center hidden-xs">Invoice No</th>
 									<th class="text-center hidden-xs">Invoice Date</th>
 									<th class="text-center hidden-xs">Supply Type</th>
 									<th class="text-center hidden-xs">Note Reason</th>
@@ -205,13 +205,13 @@
 							</thead>
 							<tbody id="itemBody">
 								<tr class="bg-olive" ng-repeat="b2bNote in gstr1ReportResp.b2bNote">
-									<td>{{b2bNote.gstin}}</td>
+									<td class="hidden-xs">{{b2bNote.gstin}}</td>
 									<td>{{b2bNote.noteNo}}</td>
 									<td>{{b2bNote.taxableAmount}}</td>
 									<td>{{b2bNote.noteAmount}}</td>
-									<td>{{b2bNote.noteDate | date:'dd-MM-yyyy'}}</td>
+									<td class="hidden-xs">{{b2bNote.noteDate | date:'dd-MM-yyyy'}}</td>
 									<td>{{b2bNote.noteType}}</td>
-									<td>{{b2bNote.invoiceNo}}</td>
+									<td class="hidden-xs">{{b2bNote.invoiceNo}}</td>
 									<td class="hidden-xs">{{b2bNote.invoiceDate | date:'dd-MM-yyyy'}}</td>
 									<td class="hidden-xs">{{b2bNote.supplyType}}</td>
 									<td class="hidden-xs">{{b2bNote.noteReason}}</td>

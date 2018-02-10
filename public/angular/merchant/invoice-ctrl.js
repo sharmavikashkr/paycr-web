@@ -93,7 +93,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 			}
 		}
 		$rootScope.calculateTotal();
-		$rootScope.calculateCnTotal();
+		$rootScope.calculateNoteTotal();
 	}
 	$scope.loadInvoicePage = function(page) {
 		var pageSize = 15;
@@ -116,16 +116,17 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 	$scope.updateInvoiceInfo = function(invoice) {
 		$rootScope.invoiceInfo = angular.copy(invoice);
 	}
-	$scope.updateNote = function(invoice) {
-		$rootScope.newnote = {
-			"invoiceCode" : "",
+	$scope.updateInvoiceNote = function(invoice) {
+        $rootScope.newInvoioceNote = {
+            "invoiceCode": "",
+            "noteDate": dateNow,
 			"items" : [],
 			"total" : 0.00,
 			"payAmount" : 0,
 			"currency" : "INR",
 			"refundCreditNote" : $rootScope.merchant.invoiceSetting.refundCreditNote
 		}
-		$rootScope.newnote.invoiceCode = invoice.invoiceCode;
+        $rootScope.newInvoioceNote.invoiceCode = invoice.invoiceCode;
 	}
 	$rootScope.updateSaveInvoice = function(invoice) {
 		$rootScope.saveinvoice = angular.copy(invoice);
@@ -177,13 +178,13 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 			});
 		}
 	}
-	$scope.addCnItem = function() {
-		if ($scope.newnote.items.length < 5) {
+	$scope.addNoteItem = function() {
+		if ($rootScope.newInvoioceNote.items.length < 5) {
 			var inventory = {
 				"name" : "",
 				"rate" : 0
 			}
-			$scope.newnote.items.push({
+            $rootScope.newInvoioceNote.items.push({
 				"inventory" : inventory,
 				"quantity" : 1,
 				"price" : 0
@@ -212,9 +213,9 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		$scope.saveinvoice.items.splice(pos, 1);
 		$scope.calculateTotal();
 	}
-	$scope.deleteCnItem = function(pos) {
-		$scope.newnote.items.splice(pos, 1);
-		$scope.calculateCnTotal();
+	$scope.deleteNoteItem = function(pos) {
+        $rootScope.newInvoioceNote.items.splice(pos, 1);
+		$rootScope.calculateNoteTotal();
 	}
 	$rootScope.calculateTotal = function() {
 		var totalPrice = 0;
@@ -253,32 +254,32 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 				+ parseFloat($scope.saveinvoice.shipping)
 				- parseFloat($scope.saveinvoice.discount)).toFixed(2));
 	}
-	$rootScope.calculateCnTotal = function() {
+	$rootScope.calculateNoteTotal = function() {
 		var totalPrice = 0;
 		var totalRate = 0;
-		for ( var item in $scope.newnote.items) {
+		for ( var item in $rootScope.newInvoioceNote.items) {
 			var itemTax = 0;
-			if ($scope.newnote.items[item].inventory.rate == null) {
-				$scope.newnote.items[item].inventory.rate = 0;
+			if ($rootScope.newInvoioceNote.items[item].inventory.rate == null) {
+				$rootScope.newInvoioceNote.items[item].inventory.rate = 0;
 			}
-			if ($scope.newnote.items[item].quantity == null) {
-				$scope.newnote.items[item].quantity = 0;
+			if ($rootScope.newInvoioceNote.items[item].quantity == null) {
+				$rootScope.newInvoioceNote.items[item].quantity = 0;
 			}
-			if ($scope.newnote.items[item].tax != null) {
-				itemTax = parseFloat($scope.newnote.items[item].tax.value).toFixed(2);
+			if ($rootScope.newInvoioceNote.items[item].tax != null) {
+				itemTax = parseFloat($rootScope.newInvoioceNote.items[item].tax.value).toFixed(2);
 			}
-			var itemTotal = parseFloat((parseFloat($scope.newnote.items[item].inventory.rate)
-					* parseFloat($scope.newnote.items[item].quantity)).toFixed(2));
-			$scope.newnote.items[item].price = parseFloat((itemTotal + parseFloat((itemTotal * itemTax) / 100)).toFixed(2));
+			var itemTotal = parseFloat((parseFloat($rootScope.newInvoioceNote.items[item].inventory.rate)
+					* parseFloat($rootScope.newInvoioceNote.items[item].quantity)).toFixed(2));
+			$rootScope.newInvoioceNote.items[item].price = parseFloat((itemTotal + parseFloat((itemTotal * itemTax) / 100)).toFixed(2));
 			totalRate = totalRate + itemTotal;
-			totalPrice = totalPrice + parseFloat($scope.newnote.items[item].price);
+			totalPrice = totalPrice + parseFloat($rootScope.newInvoioceNote.items[item].price);
 		}
-		if ($scope.newnote.adjustment == null) {
-			$scope.newnote.adjustment = 0;
+		if ($rootScope.newInvoioceNote.adjustment == null) {
+			$rootScope.newInvoioceNote.adjustment = 0;
 		}
-		$scope.newnote.total = parseFloat(totalRate.toFixed(2));
-		$scope.newnote.totalPrice = parseFloat(totalPrice.toFixed(2));
-		$scope.newnote.payAmount = parseFloat((totalPrice + parseFloat($scope.newnote.adjustment)).toFixed(2));
+		$rootScope.newInvoioceNote.total = parseFloat(totalRate.toFixed(2));
+		$rootScope.newInvoioceNote.totalPrice = parseFloat(totalPrice.toFixed(2));
+		$rootScope.newInvoioceNote.payAmount = parseFloat((totalPrice + parseFloat($rootScope.newInvoioceNote.adjustment)).toFixed(2));
 	}
 	$scope.createInvoice = function() {
 		if(!this.createInvoiceForm.$valid) {
@@ -317,7 +318,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
 			},
-			data : $rootScope.newnote
+			data : $rootScope.newInvoioceNote
 		}
 		$http(req).then(function(data) {
 			$rootScope.searchInvoice();
@@ -325,7 +326,7 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		}, function(data) {
 			$scope.serverMessage(data);
 		});
-		angular.element(document.querySelector('#createNoteModal')).modal('hide');
+		angular.element(document.querySelector('#createInvoiceNoteModal')).modal('hide');
 	}
 	$scope.updateInvoicePayInfo = function(invoice) {
 		$rootScope.invoicePayInfo = angular.copy(invoice);

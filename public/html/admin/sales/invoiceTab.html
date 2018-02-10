@@ -123,7 +123,7 @@
 											<button ng-if="invoice.invoiceType != 'BULK'" ng-click="updateInvoicePayInfo(invoice)" title="Payments" class="btn btn-flat btn-success btn-md" data-toggle="modal" data-target="#invoicePaymentModal">
 												<i class="fa fa-rupee"></i>
 											</button>
-											<button ng-if="invoice.note != null" ng-click="updateInvoiceInfo(invoice)" title="Credit Note" class="btn btn-flat bg-red btn-md" data-toggle="modal" data-target="#creditNoteModal">
+											<button ng-if="invoice.note != null" ng-click="updateInvoiceInfo(invoice)" title="Credit Note" class="btn btn-flat bg-red btn-md" data-toggle="modal" data-target="#invoiceNoteModal">
 												<i class="fa fa-undo"></i>
 											</button>
 											<a title="Download Pdf" class="btn btn-flat bg-navy btn-md" href="{{appUrl}}/invoice/receipt/{{invoice.invoiceCode}}">

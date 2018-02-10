@@ -73,7 +73,6 @@ app.controller('ExpenseController', function($scope, $rootScope, envService, $ht
 							break;
 						}
 					}
-					$scope.calculateExpTotal();
 					break;
 				}
 			}
@@ -89,11 +88,12 @@ app.controller('ExpenseController', function($scope, $rootScope, envService, $ht
 							break;
 						}
 					}
-					$scope.calculateExpTotal();
 					break;
 				}
 			}
-		}
+        }
+        $rootScope.calculateExpTotal();
+        $rootScope.calculateExpNoteTotal();
 	}
 	$scope.loadExpensePage = function(page) {
 		var pageSize = 15;
@@ -115,7 +115,18 @@ app.controller('ExpenseController', function($scope, $rootScope, envService, $ht
 	}
 	$scope.updateExpenseInfo = function(expense) {
 		$rootScope.expenseInfo = angular.copy(expense);
-	}
+    }
+    $scope.updateExpenseNote = function (expense) {
+        $rootScope.newExpenseNote = {
+            "expenseCode": "",
+            "noteDate": dateNow,
+            "items": [],
+            "total": 0.00,
+            "payAmount": 0,
+            "currency": "INR"
+        }
+        $rootScope.newExpenseNote.expenseCode = expense.expenseCode;
+    }
 	$rootScope.updateSaveExpense = function(expense) {
 		$rootScope.saveexpense = angular.copy(expense);
 		if(expense.id != null) {
@@ -148,7 +159,20 @@ app.controller('ExpenseController', function($scope, $rootScope, envService, $ht
 				"price" : 0
 			});
 		}
-	}
+    }
+    $scope.addExpNoteItem = function () {
+        if ($rootScope.newExpenseNote.items.length < 5) {
+            var asset = {
+                "name": "",
+                "rate": 0
+            }
+            $rootScope.newExpenseNote.items.push({
+                "asset": asset,
+                "quantity": 1,
+                "price": 0
+            });
+        }
+    }
 	$scope.addItemXs = function(item) {
 		if ($scope.saveexpense.items.length < 5) {
 			var asset = {
@@ -170,7 +194,11 @@ app.controller('ExpenseController', function($scope, $rootScope, envService, $ht
 	$scope.deleteItem = function(pos) {
 		$scope.saveexpense.items.splice(pos, 1);
 		$scope.calculateExpTotal();
-	}
+    }
+    $scope.deleteExpNoteItem = function (pos) {
+        $rootScope.newExpenseNote.items.splice(pos, 1);
+        $rootScope.calculateExpNoteTotal();
+    }
 	$rootScope.calculateExpTotal = function() {
 		var totalPrice = 0;
 		var totalRate = 0;
@@ -207,7 +235,34 @@ app.controller('ExpenseController', function($scope, $rootScope, envService, $ht
 		$scope.saveexpense.payAmount = parseFloat((totalPrice
 				+ parseFloat($scope.saveexpense.shipping)
 				- parseFloat($scope.saveexpense.discount)).toFixed(2));
-	}
+    }
+    $rootScope.calculateExpNoteTotal = function () {
+        var totalPrice = 0;
+        var totalRate = 0;
+        for (var item in $rootScope.newExpenseNote.items) {
+            var itemTax = 0;
+            if ($rootScope.newExpenseNote.items[item].asset.rate == null) {
+                $rootScope.newExpenseNote.items[item].asset.rate = 0;
+            }
+            if ($rootScope.newExpenseNote.items[item].quantity == null) {
+                $rootScope.newExpenseNote.items[item].quantity = 0;
+            }
+            if ($rootScope.newExpenseNote.items[item].tax != null) {
+                itemTax = parseFloat($rootScope.newExpenseNote.items[item].tax.value).toFixed(2);
+            }
+            var itemTotal = parseFloat((parseFloat($rootScope.newExpenseNote.items[item].asset.rate)
+                * parseFloat($rootScope.newExpenseNote.items[item].quantity)).toFixed(2));
+            $rootScope.newExpenseNote.items[item].price = parseFloat((itemTotal + parseFloat((itemTotal * itemTax) / 100)).toFixed(2));
+            totalRate = totalRate + itemTotal;
+            totalPrice = totalPrice + parseFloat($rootScope.newExpenseNote.items[item].price);
+        }
+        if ($rootScope.newExpenseNote.adjustment == null) {
+            $rootScope.newExpenseNote.adjustment = 0;
+        }
+        $rootScope.newExpenseNote.total = parseFloat(totalRate.toFixed(2));
+        $rootScope.newExpenseNote.totalPrice = parseFloat(totalPrice.toFixed(2));
+        $rootScope.newExpenseNote.payAmount = parseFloat((totalPrice + parseFloat($rootScope.newExpenseNote.adjustment)).toFixed(2));
+    }
 	$scope.createExpense = function() {
 		if(!this.createExpenseForm.$valid) {
 			return false;
@@ -229,7 +284,25 @@ app.controller('ExpenseController', function($scope, $rootScope, envService, $ht
 		});
 		angular.element(document.querySelector('#createExpenseModal')).modal('hide');
 		angular.element(document.querySelector('#createExpenseXsModal')).modal('hide');
-	}
+    }
+    $scope.createExpNote = function () {
+        var req = {
+            method: 'POST',
+            url: $rootScope.appUrl + "/expense/note/new",
+            headers: {
+                "Authorization": "Bearer "
+                + $cookies.get("access_token")
+            },
+            data: $rootScope.newExpenseNote
+        }
+        $http(req).then(function (data) {
+            $rootScope.searchExpense();
+            $scope.serverMessage(data);
+        }, function (data) {
+            $scope.serverMessage(data);
+        });
+        angular.element(document.querySelector('#createExpenseNoteModal')).modal('hide');
+    }
 	$scope.updateExpensePayInfo = function(expense) {
 		$rootScope.expensePayInfo = angular.copy(expense);
 		var req = {
