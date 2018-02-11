@@ -1,4 +1,4 @@
-app.controller('TaxController', function($scope, $rootScope, envService, $http, $cookies) {
+app.controller('Gstr1Controller', function($scope, $rootScope, envService, $http, $cookies) {
 	$rootScope.updateFilingPeriod = function() {
 		if($rootScope.merchant.gstSetting.filingPeriod == 'QUARTERLY') {
 			$scope.period = "01-03-2018";
