@@ -35,30 +35,8 @@
 						</table>
 					</div>
 				</div>
-				<h5>Schedule Report (Receive report emails on corresponding dates)</h5>
-				<form name="recurringInvoiceForm">
-					<div class="row">
-						<div class="col-md-12">
-							<table class="table table-bordered table-responsive">
-								<tbody>
-									<tr>
-										<td>
-											<div class="form-group">
-												<label class="control-label">Select Report</label>
-												<select class="form-control" ng-model="addScheduleReport">
-													<option ng-repeat="report in reports" value="{{report.id}}">{{report.name}}</option>
-												</select>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-info" ng-click="addSchedule(addScheduleReport)">Add</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>

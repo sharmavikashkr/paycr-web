@@ -1,6 +1,9 @@
 <div ng-controller="ReportsController">
 	<div class="panel-body">
-		<div class="col-sm-2 col-sm-offset-9">
+		<div class="col-sm-3 col-sm-offset-8">
+            <button ng-click="getSchedule()" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#recurrReportModal">
+                <i class="fa fa-clock-o"></i> Scheduled
+            </button>
 			<button class="btn btn-info btn-sm" data-toggle="modal" data-target="#createReportModal">
 				<i class="fa fa-plus"></i> Report
 			</button>
@@ -16,7 +19,7 @@
 							<button ng-click="loadReport(report)" class="btn btn-flat btn-xs btn-info" title="Load Report">
 								<i class="fa fa-retweet"></i>
 							</button>
-							<button ng-click="getSchedule(report.id)" data-toggle="modal" data-target="#recurrReportModal" class="btn btn-flat btn-xs btn-success" title="Schedule Report">
+							<button ng-click="addSchedule(report.id)" class="btn btn-flat btn-xs btn-success" title="Schedule Report">
 								<i class="fa fa-clock-o"></i>
 							</button>
 							<button ng-if="report.merchant!=null" ng-click="deleteReport(report.id, report.name)" class="btn btn-flat btn-xs btn-danger" title="Delete Report">

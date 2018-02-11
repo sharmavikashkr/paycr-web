@@ -142,7 +142,7 @@ app.controller('ReportsController', function($scope, $rootScope, envService, $ht
 			$scope.serverMessage(data);
 		});
 	}
-	$scope.getSchedule = function(reportId) {
+	$scope.getSchedule = function() {
 		var req = {
 			method : 'GET',
 			url : $rootScope.appUrl + "/reports/schedule/get",
@@ -155,7 +155,6 @@ app.controller('ReportsController', function($scope, $rootScope, envService, $ht
 		}, function(data) {
 			$scope.serverMessage(data);
 		});
-		//$rootScope.addScheduleReport = reportId;
 	}
 	$scope.addSchedule = function(reportId) {
 		var req = {
