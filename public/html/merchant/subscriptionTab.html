@@ -7,7 +7,7 @@
 					<table class="table table-bordered table-responsive">
 						<thead>
 							<tr>
-								<td class="text-center"><strong>Name</strong></td>
+								<td class="text-center hidden-xs"><strong>Name</strong></td>
 								<td class="text-center hidden-xs"><strong>Start Date</strong></td>
 								<td class="text-center"><strong>End Date</strong></td>
 								<td class="text-center"><strong>Used</strong></td>
@@ -17,7 +17,7 @@
 						</thead>
 						<tbody id="itemBody">
 							<tr ng-class="(merpricing.status=='ACTIVE')?'success':'danger'" ng-repeat="merpricing in merchant.pricings" title="{{merpricing.status}}">
-								<td class="text-center">{{merpricing.pricing.name}}</td>
+								<td class="text-center hidden-xs">{{merpricing.pricing.name}}</td>
 								<td class="text-center hidden-xs">{{merpricing.startDate | date:'dd-MM-yyyy HH:mm'}}</td>
 								<td class="text-center">{{merpricing.endDate | date:'dd-MM-yyyy HH:mm'}}</td>
 								<td class="text-center">{{merpricing.useCount}}</td>
