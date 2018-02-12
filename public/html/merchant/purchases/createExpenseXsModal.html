@@ -55,7 +55,7 @@
 								<div class="panel-body">
 									<div ng-class="(createExpenseForm.invoiceCode.$valid)?'':'has-error'" class="form-group">
 										<label class="control-label">Invoice Code:</label>
-										<input ng-model="saveexpense.invoiceCode" name="invoiceCode" autocomplete="off" class="form-control" placeholder="Invoice Code" type="text" ng-pattern="patterns.paramNamePattern" required />
+										<input ng-model="saveexpense.invoiceCode" name="invoiceCode" autocomplete="off" class="form-control" placeholder="Invoice Code" type="text" ng-pattern="patterns.codePattern" required />
 									</div>
 									<div ng-class="(createExpenseForm.invoiceDate.$valid)?'':'has-error'" class="form-group">
 										<label class="control-label">Invoice Date:</label>

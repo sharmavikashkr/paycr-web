@@ -44,7 +44,8 @@ app.controller('MerchantController', function ($scope, $rootScope, envService, $
 		"mobilePattern" : "\\d{10}",
 		"amountPattern" : "\\d{1,7}",
 		"numberPattern" : "\\d{1,4}",
-		"passPattern" : /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/
+        "passPattern": /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/,
+        "codePattern": "[0-9a-zA-Z\\-\\/]{3,16}"
 	}
 	$rootScope.newinvoice = {
 		"invoiceCode" : "",
