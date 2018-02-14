@@ -24,7 +24,7 @@
 							</thead>
 							<tbody>
 								<tr ng-repeat="attach in invoiceInfo.attachments">
-									<td><a href="{{appUrl}}/invoice/{{invoiceInfo.invoiceCode}}/attachment/{{attach.name}}">{{attach.name}}</a></td>
+									<td><a href="{{appUrl}}/invoice/{{merchant.accessKey}}/{{invoiceInfo.invoiceCode}}/attachment/{{attach.name}}">{{attach.name}}</a></td>
 									<td class="hidden-xs">{{attach.createdBy}}</td>
 									<td class="hidden-xs">{{attach.created | date:'dd-MM-yyyy HH:mm'}}</td>
 								</tr>
