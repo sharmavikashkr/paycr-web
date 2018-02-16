@@ -7,18 +7,15 @@
 						<tr>
 							<td>
 								<div>
-									<label class="control-label">Consumer Category</label><br>
-									<div class="visible-lg-inline visible-md-inline visible-sm-inline visible-xs-inline" ng-repeat="conCatFilter in searchConsumerReq.conCatList">
-										<label class="panel">{{conCatFilter.name}} : {{conCatFilter.value}}
-											<a class="btn btn-flat btn-danger btn-xs" title="delete category" ng-click="deleteFilter($index)"><i class="fa fa-minus"></i></a>
+									<label class="control-label">Consumer Flags</label><br>
+									<div class="visible-lg-inline visible-md-inline visible-sm-inline visible-xs-inline" ng-repeat="flagFilter in searchConsumerReq.flagList">
+										<label class="panel">{{flagFilter.name}}
+											<a class="btn btn-flat btn-danger btn-xs" title="delete flag" ng-click="deleteFilter($index)"><i class="fa fa-minus"></i></a>
 										</label>&nbsp;
 									</div>
 									<div class="visible-lg-inline visible-md-inline visible-sm-inline visible-xs-inline">
-										<select ng-model="newFilter.name" ng-change="fetchCategoryValues(newFilter.name)">
-											<option ng-repeat="category in categories" ng-value="category">{{category}}</option>
-										</select>
-										<select ng-model="newFilter.value">
-											<option ng-repeat="catValue in catValues" ng-value="catValue">{{catValue}}</option>
+										<select ng-model="newFilter.name">
+											<option ng-repeat="flag in flags" ng-value="flag">{{flag}}</option>
 										</select>
 										<a class="btn btn-flat btn-success btn-xs" title="add filter" ng-click="addFilter(newFilter)"><i class="fa fa-plus"></i></a>
 									</div>
@@ -121,16 +118,10 @@
 												data-toggle="tab">
 												<i class="fa fa-search"></i>
 											</button>
-											<!-- <button title="Edit Consumer" type="button"
-												class="btn btn-flat btn-danger btn-md"
-												ng-click="$parent.editConPrefs = !$parent.editConPrefs"
-												ng-if="user.access.finance">
-												<i class="fa fa-pencil"></i>
-											</button> -->
 											&nbsp;&nbsp;&nbsp;
-											<div class="visible-lg-inline visible-md-inline visible-sm-inline visible-xs-inline" ng-repeat="conCat in consumer.conCats">
-												<label class="panel" href="#">{{conCat.name}} : {{conCat.value}}
-													<a ng-if="user.access.finance" class="btn btn-flat btn-danger btn-xs" title="delete category" ng-click="deleteCategory(consumer.id, conCat.id)"><i class="fa fa-minus"></i></a>
+											<div class="visible-lg-inline visible-md-inline visible-sm-inline visible-xs-inline" ng-repeat="flag in consumer.flags">
+												<label class="panel" href="#">{{flag.name}}
+													<a ng-if="user.access.finance" class="btn btn-flat btn-danger btn-xs" title="delete flag" ng-click="deleteFlag(consumer.id, flag.id)"><i class="fa fa-minus"></i></a>
 												</label>&nbsp;
 											</div>
 										</div>
@@ -155,20 +146,14 @@
 																<tr>
 																	<td colspan="2">
 																		<div class="row">
-																			<div class="col-sm-5">
-																				<input placeholder="category name" class="form-control" type="text" ng-model="newConCat.name" list="cat-auto-complete" ng-init="newConCat.name = ''" />
+																			<div class="col-sm-10">
+																				<input placeholder="flag" class="form-control" type="text" ng-model="newFlag.name" list="cat-auto-complete" ng-init="newFlag.name = ''" />
 																				<datalist id="cat-auto-complete">
-																					<option ng-repeat="category in categories" ng-value="category">
-																				</datalist>
-																			</div>
-																			<div class="col-sm-5">
-																				<input placeholder="category value" class="form-control" ng-disabled="newConCat.name == ''" type="text" ng-focus="fetchNewCategoryValues(newConCat.name)" ng-model="newConCat.value" list="catValue-auto-complete" ng-init="newConCat.value = ''" /> 
-																				<datalist id="catValue-auto-complete">
-																					<option ng-repeat="newCatValue in newCatValues" ng-value="newCatValue">
+																					<option ng-repeat="flag in flags" ng-value="flag">
 																				</datalist>
 																			</div>
 																			<div class="col-sm-2">
-																				<a class="btn btn-flat btn-success btn-sm" title="add category" ng-click="addCategory(consumer.id, newConCat)"><i class="fa fa-plus"></i></a>
+																				<a class="btn btn-flat btn-success btn-sm" title="add flag" ng-click="addFlag(consumer.id, newFlag)"><i class="fa fa-plus"></i></a>
 																			</div>
 																		</div>
 																	</td>

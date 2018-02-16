@@ -56,9 +56,9 @@
 									</tr>
 									<tr>
 										<td>
-											<div class="visible-lg-inline visible-md-inline visible-sm-inline visible-xs-inline" ng-repeat="conCat in newconsumer.conCats">
-												<label class="panel">{{conCat.name}} : {{conCat.value}}
-													<a class="btn btn-flat btn-danger btn-xs" title="remove category" ng-click="removeNewCategory($index)"><i class="fa fa-minus"></i></a>
+											<div class="visible-lg-inline visible-md-inline visible-sm-inline visible-xs-inline" ng-repeat="flag in newconsumer.flags">
+												<label class="panel">{{flag.name}}
+													<a class="btn btn-flat btn-danger btn-xs" title="remove flag" ng-click="removeNewFlag($index)"><i class="fa fa-minus"></i></a>
 												</label>&nbsp;
 											</div>
 										</td>
@@ -66,20 +66,14 @@
 									<tr>
 										<td>
 											<div class="row">
-												<div class="col-xs-5">
-													<input placeholder="category name" class="form-control" type="text" ng-model="newConCat.name" list="cat-auto-complete" ng-init="newConCat.name = ''" />
+												<div class="col-xs-10">
+													<input placeholder="flag" class="form-control" type="text" ng-model="newFlag.name" list="cat-auto-complete" ng-init="newFlag.name = ''" />
 													<datalist id="cat-auto-complete">
-														<option ng-repeat="category in categories" ng-value="category">
-													</datalist>
-												</div>
-												<div class="col-xs-5">
-													<input placeholder="category value" class="form-control" ng-disabled="newConCat.name == ''" type="text" ng-focus="fetchNewCategoryValues(newConCat.name)" ng-model="newConCat.value" list="catValue-auto-complete" ng-init="newConCat.value = ''" /> 
-													<datalist id="catValue-auto-complete">
-														<option ng-repeat="newCatValue in newCatValues" ng-value="newCatValue">
+														<option ng-repeat="flag in flags" ng-value="flag">
 													</datalist>
 												</div>
 												<div class="col-xs-2">
-													<a class="btn btn-flat btn-success btn-sm" title="add category" ng-click="addNewCategory(newConCat)"><i class="fa fa-plus"></i></a>
+													<a class="btn btn-flat btn-success btn-sm" title="add flag" ng-click="addNewFlag(newFlag)"><i class="fa fa-plus"></i></a>
 												</div>
 											</div>
 										</td>

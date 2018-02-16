@@ -12,18 +12,15 @@
 						<tr>
 							<td>
 								<div>
-									<label class="control-label">Consumer Category</label><br>
-									<div class="visible-lg-inline visible-md-inline visible-sm-inline visible-xs-inline" ng-repeat="conCatFilter in searchConsumerReq.conCatList">
-										<label class="panel">{{conCatFilter.name}} : {{conCatFilter.value}}
-											<a class="btn btn-flat btn-danger btn-xs" title="delete category" ng-click="deleteFilter($index)"><i class="fa fa-minus"></i></a>
+									<label class="control-label">Consumer Flags</label><br>
+									<div class="visible-lg-inline visible-md-inline visible-sm-inline visible-xs-inline" ng-repeat="flagFilter in searchConsumerReq.flagList">
+										<label class="panel">{{flagFilter.name}}
+											<a class="btn btn-flat btn-danger btn-xs" title="delete flag" ng-click="deleteFilter($index)"><i class="fa fa-minus"></i></a>
 										</label>&nbsp;
 									</div>
 									<div class="visible-lg-inline visible-md-inline visible-sm-inline visible-xs-inline">
-										<select ng-model="newFilter.name" ng-change="fetchCategoryValues(newFilter.name)">
-											<option ng-repeat="category in categories" ng-value="category">{{category}}</option>
-										</select>
-										<select ng-model="newFilter.value">
-											<option ng-repeat="catValue in catValues" ng-value="catValue">{{catValue}}</option>
+										<select ng-model="newFilter.name">
+											<option ng-repeat="flag in flags" ng-value="flag">{{flag}}</option>
 										</select>
 										<a class="btn btn-flat btn-success btn-xs" title="add filter" ng-click="addFilter(newFilter)"><i class="fa fa-plus"></i></a>
 									</div>
@@ -62,20 +59,16 @@
 						<tr>
 							<td>
 								<div>
-									<label class="control-label">New Consumer Category</label><br>
-									<div class="visible-lg-inline visible-md-inline visible-sm-inline visible-xs-inline" ng-repeat="conCatFilter in updateConsumerReq.conCatList">
-										<label class="panel">{{conCatFilter.name}} : {{conCatFilter.value}}
-											<a class="btn btn-flat btn-danger btn-xs" title="delete category" ng-click="deleteUpdateFilter($index)"><i class="fa fa-minus"></i></a>
+									<label class="control-label">New Consumer Flags</label><br>
+									<div class="visible-lg-inline visible-md-inline visible-sm-inline visible-xs-inline" ng-repeat="flagFilter in updateConsumerReq.flagList">
+										<label class="panel">{{flagFilter.name}}
+											<a class="btn btn-flat btn-danger btn-xs" title="delete flag" ng-click="deleteUpdateFilter($index)"><i class="fa fa-minus"></i></a>
 										</label>&nbsp;
 									</div>
 									<div class="visible-lg-inline visible-md-inline visible-sm-inline visible-xs-inline">
-										<input placeholder="category name" type="text" ng-model="updateFilter.name" list="update-cat-auto-complete" ng-init="updateFilter.name = ''" /> 
+										<input placeholder="Flag" type="text" ng-model="updateFilter.name" list="update-cat-auto-complete" ng-init="updateFilter.name = ''" /> 
 										<datalist id="update-cat-auto-complete">
-											<option ng-repeat="updateCat in updateCategories" ng-value="updateCat">
-										</datalist>
-										<input placeholder="category value" ng-disabled="updateFilter.name == ''" type="text" ng-focus="fetchUpdateCategoryValues(updateFilter.name)" ng-model="updateFilter.value" list="update-value-auto-complete" ng-init="updateFilter.value = ''" /> 
-										<datalist id="update-value-auto-complete">
-											<option ng-repeat="updateCatValue in updateCatValues" ng-value="updateCatValue">
+											<option ng-repeat="updateFlag in updateFlags" ng-value="updateFlag">
 										</datalist>
 										<a class="btn btn-flat btn-success btn-sm" title="add filter" ng-click="addUpdateFilter(updateFilter)"><i class="fa fa-plus"></i></a>
 									</div>
@@ -87,7 +80,7 @@
 								<table class="table table-striped table-bordered table-responsive">
 									<tbody>
 										<tr>
-											<td><strong>Remove Old Categories</strong></td>
+											<td><strong>Remove Old Flags</strong></td>
 											<td><input ng-model="updateConsumerReq.removeOldTags" type="checkbox"/></td>
 										</tr>
 										<tr>
@@ -110,7 +103,7 @@
 				</table>
 			</div>
 			<div class="modal-footer">
-				<button type="button" ng-click="updateConsumerCategory()" class="btn btn-info" data-dismiss="modal">Update</button>
+				<button type="button" ng-click="updateConsumerFlag()" class="btn btn-info" data-dismiss="modal">Update</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>

@@ -2,16 +2,16 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 	$rootScope.searchConsumerReq = {
 		"email" : "",
 		"mobile" : "",
-		"conCatList" : []
+		"flagList" : []
 	}
 	$rootScope.updateConsumerReq = {
-		"conCatList" : [],
+		"flagList" : [],
 		"emailOnPay" : true,
 		"emailOnRefund" : true,
 		"active" : true
 	}
 	$scope.newconsumer = {
-		"conCats" : [],
+		"flags" : [],
 		"email" : "",
 		"mobile" : "",
 		"name" : ""
@@ -28,7 +28,7 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 		$http(req).then(function(consumers) {
 			$rootScope.consumerList = consumers.data;
 			$scope.loadConsumerPage(1);
-			$scope.fetchCategories();
+			$scope.fetchFlags();
 		}, function(data) {
 			$scope.serverMessage(data);
 		});
@@ -67,14 +67,14 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 			$scope.serverMessage(data);
 		});
 	}
-	$scope.updateConsumerCategory = function() {
-		if (!confirm('Update for search criteria above?')) {
+	$scope.updateConsumerFlag = function() {
+		if (!confirm('Update for search criteria?')) {
 			return false;
 		}
 		this.updateConsumerReq.searchReq = $rootScope.searchConsumerReq;
 		var req = {
 			method : 'POST',
-			url : $rootScope.appUrl + "/consumer/update/category",
+			url : $rootScope.appUrl + "/consumer/update/flag",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
@@ -142,71 +142,29 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 		});
 		angular.element(document.querySelector('#bulkConsumerUploadModal')).modal('hide');
 	}
-	$rootScope.fetchCategories = function() {
+	$rootScope.fetchFlags = function() {
 		var req = {
 			method : 'GET',
-			url : $rootScope.appUrl + "/consumer/categories",
+			url : $rootScope.appUrl + "/consumer/flags",
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}
 		}
-		$http(req).then(function(categories) {
-			$rootScope.categories = categories.data;
-			$rootScope.updateCategories = categories.data;
+		$http(req).then(function(flags) {
+            $rootScope.flags = flags.data;
+            $rootScope.updateFlags = flags.data;
 		}, function(data) {
 			$scope.serverMessage(data);
 		});
 	}
-	$rootScope.fetchCategoryValues = function(name) {
-		var req = {
-			method : 'GET',
-			url : $rootScope.appUrl + "/consumer/category/" + name,
-			headers : {
-				"Authorization" : "Bearer " + $cookies.get("access_token")
-			}
-		}
-		$http(req).then(function(catValues) {
-			$rootScope.catValues = catValues.data;
-		}, function(data) {
-			$scope.serverMessage(data);
-		});
-	}
-	$rootScope.fetchUpdateCategoryValues = function(name) {
-		var req = {
-			method : 'GET',
-			url : $rootScope.appUrl + "/consumer/category/" + name,
-			headers : {
-				"Authorization" : "Bearer " + $cookies.get("access_token")
-			}
-		}
-		$http(req).then(function(updateCatValues) {
-			$rootScope.updateCatValues = updateCatValues.data;
-		}, function(data) {
-			$scope.serverMessage(data);
-		});
-	}
-	$rootScope.fetchNewCategoryValues = function(name) {
-		var req = {
-			method : 'GET',
-			url : $rootScope.appUrl + "/consumer/category/" + name,
-			headers : {
-				"Authorization" : "Bearer " + $cookies.get("access_token")
-			}
-		}
-		$http(req).then(function(newCatValues) {
-			$rootScope.newCatValues = newCatValues.data;
-		}, function(data) {
-			$scope.serverMessage(data);
-		});
-	}
-	$scope.addCategory = function(consumerId, newConCat) {
+	$scope.addFlag = function(consumerId, newFlag) {
 		var req = {
 			method : 'POST',
-			url : $rootScope.appUrl + "/consumer/category/new/" + consumerId,
+			url : $rootScope.appUrl + "/consumer/flag/new/" + consumerId,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			},
-			data : newConCat
+            data: newFlag
 		}
 		$http(req).then(function(data) {
 			$scope.serverMessage(data);
@@ -215,13 +173,13 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 			$scope.serverMessage(data);
 		});
 	}
-	$scope.deleteCategory = function(consumerId, conCatId) {
-		if (!confirm('Delete tag?')) {
+    $scope.deleteFlag = function(consumerId, flagId) {
+		if (!confirm('Delete flag?')) {
 			return false;
 		}
 		var req = {
 			method : 'GET',
-			url : $rootScope.appUrl + "/consumer/category/delete/" + consumerId + "/" + conCatId,
+            url: $rootScope.appUrl + "/consumer/flag/delete/" + consumerId + "/" + flagId,
 			headers : {
 				"Authorization" : "Bearer " + $cookies.get("access_token")
 			}
@@ -286,41 +244,43 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 		$rootScope.searchConsumerInvoices(consumer);
 	}
 	$scope.addFilter = function(newFilter) {
-		if(newFilter.value == null || newFilter.value == "" || newFilter.name == null || newFilter.name == "") {
+		if(newFilter.name == null || newFilter.name == "") {
 			return;
 		}
-		$rootScope.searchConsumerReq.conCatList.push(angular.copy(newFilter));
-		this.newFilter = {"name":"","value":""};
-		$rootScope.catValues = [];
+		$rootScope.searchConsumerReq.flagList.push(angular.copy(newFilter));
+		this.newFilter = {"name":""};
 	}
 	$scope.deleteFilter = function(pos) {
-		$rootScope.searchConsumerReq.conCatList.splice(pos, 1);
+		$rootScope.searchConsumerReq.flagList.splice(pos, 1);
 	}
 	$scope.addUpdateFilter = function(updateFilter) {
-		if(updateFilter.value == null || updateFilter.value == "" || updateFilter.name == null || updateFilter.name == "") {
+		if(updateFilter.name == null || updateFilter.name == "") {
 			return;
 		}
-		$rootScope.updateConsumerReq.conCatList.push(angular.copy(updateFilter));
-		this.updateFilter = {"name":"","value":""};
-		$rootScope.updateCatValues = [];
+		$rootScope.updateConsumerReq.flagList.push(angular.copy(updateFilter));
+		this.updateFilter = {"name":""};
 	}
 	$scope.deleteUpdateFilter = function(pos) {
-		$rootScope.updateConsumerReq.conCatList.splice(pos, 1);
+		$rootScope.updateConsumerReq.flagList.splice(pos, 1);
 	}
-	$scope.addNewCategory = function(newConCat) {
-		if(newConCat.value == null || newConCat.value == "" || newConCat.name == null || newConCat.name == "") {
+	$scope.addNewFlag = function(newFlag) {
+        if (newFlag.name == null || newFlag.name == "") {
 			return;
 		}
-		$scope.newconsumer.conCats.push(angular.copy(newConCat));
+        $scope.newconsumer.flags.push(angular.copy(newFlag));
 	}
-	$scope.removeNewCategory = function(pos) {
-		$scope.newconsumer.conCats.splice(pos, 1);
+	$scope.removeNewFlag = function(pos) {
+		$scope.newconsumer.flags.splice(pos, 1);
 	}
 	$scope.clearConsumerSearch = function() {
-		$rootScope.searchConsumerReq = {
+        $rootScope.searchConsumerReq = {
+            "name" : "",
 			"email" : "",
 			"mobile" : "",
-			"conCatList" : []
+			"flagList" : []
 		}
-	}
+    }
+    $scope.clear = function() {
+        angular.element("input[type='file']").val(null);
+    }
 });

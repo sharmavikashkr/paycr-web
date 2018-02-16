@@ -486,10 +486,10 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		});
 		angular.element(document.querySelector('#childInvoiceModal')).modal('hide');
 	}
-	$scope.createCategoryInvoice = function(invoiceCode) {
+	$scope.createFlagInvoice = function(invoiceCode) {
 		var req = {
 			method : 'POST',
-			url : $rootScope.appUrl + "/invoice/bulk/category/"+invoiceCode,
+			url : $rootScope.appUrl + "/invoice/bulk/flag/"+invoiceCode,
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
@@ -583,21 +583,21 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		
 		var req = {
 			method : 'GET',
-			url : $rootScope.appUrl + "/invoice/bulk/categories/"+invoice.invoiceCode,
+			url : $rootScope.appUrl + "/invoice/bulk/flags/"+invoice.invoiceCode,
 			headers : {
 				"Authorization" : "Bearer "
 						+ $cookies.get("access_token")
 			}
 		}
-		$http(req).then(function(bulkcategories) {
-			$rootScope.bulkCategories = bulkcategories.data;
-			$rootScope.fetchCategories();
+		$http(req).then(function(bulkflags) {
+            $rootScope.bulkFlags = bulkflags.data;
+			$rootScope.fetchFlags();
 		}, function(data) {
 			$scope.serverMessage(data);
 		});
 
 		$rootScope.childInvoiceReq = {
-			"conCatList" : [],
+			"flagList" : [],
 			"invoiceType" : "SINGLE",
 			"recInv" : {
 				"startDate" : dateNow,
@@ -606,11 +606,11 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 			}
 		}
 	}
-	$scope.fetchCategoryConsumer = function() {
+	$scope.fetchFlagConsumer = function() {
 		$rootScope.searchConsumerReq = {
 			"email" : "",
 			"mobile" : "",
-			"conCatList" : $rootScope.childInvoiceReq.conCatList
+			"flagList" : $rootScope.childInvoiceReq.flagList
 		}
 		$rootScope.searchConsumer();
 	}
@@ -671,13 +671,13 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		this.newInvComment = "";
 	}
 	$scope.addFilter = function(newFilter) {
-		if(newFilter.value == null || newFilter.value == "" || newFilter.name == null || newFilter.name == "") {
+		if(newFilter.name == null || newFilter.name == "") {
 			return;
 		}
-		$rootScope.childInvoiceReq.conCatList.push(angular.copy(newFilter));
-		this.newFilter = {"name":"","value":""};
+		$rootScope.childInvoiceReq.flagList.push(angular.copy(newFilter));
+		this.newFilter = {"name":""};
 	}
 	$scope.deleteFilter = function(pos) {
-		$rootScope.childInvoiceReq.conCatList.splice(pos, 1);
+		$rootScope.childInvoiceReq.flagList.splice(pos, 1);
 	}
 });

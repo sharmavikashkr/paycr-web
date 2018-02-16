@@ -1,5 +1,6 @@
 app.controller('SupplierController', function($scope, $rootScope, envService, $http, $cookies, $httpParamSerializer) {
-	$rootScope.searchSupplierReq = {
+    $rootScope.searchSupplierReq = {
+        "name": "",
 		"email" : "",
 		"mobile" : ""
 	}
@@ -20,7 +21,6 @@ app.controller('SupplierController', function($scope, $rootScope, envService, $h
 		$http(req).then(function(suppliers) {
 			$rootScope.supplierList = suppliers.data;
 			$scope.loadSupplierPage(1);
-			$scope.fetchCategories();
 		}, function(data) {
 			$scope.serverMessage(data);
 		});
@@ -148,10 +148,10 @@ app.controller('SupplierController', function($scope, $rootScope, envService, $h
 		$rootScope.searchSupplierExpenses(supplier);
 	}
 	$scope.clearSupplierSearch = function() {
-		$rootScope.searchSupplierReq = {
+        $rootScope.searchSupplierReq = {
+            "name": "",
 			"email" : "",
-			"mobile" : "",
-			"conCatList" : []
+			"mobile" : ""
 		}
 	}
 });
