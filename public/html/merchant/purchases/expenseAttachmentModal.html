@@ -12,7 +12,7 @@
 					<div class="col-md-12">
 						<div class="form-group">
 							<label class="control-label">New Attachment: </label>
-							<input type="file" onchange="angular.element(this).scope().uploadAttachment(this.files)" accept=".pdf,.doc,.docx" />
+							<input type="file" onchange="angular.element(this).scope().uploadAttachment(this.files)" ng-click="clearInputFiles()" accept=".pdf,.doc,.docx" />
 						</div>
 						<table class="table table-bordered table-responsive">
 							<thead>

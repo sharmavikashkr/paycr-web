@@ -280,7 +280,4 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 			"flagList" : []
 		}
     }
-    $scope.clear = function() {
-        angular.element("input[type='file']").val(null);
-    }
 });

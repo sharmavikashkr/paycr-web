@@ -268,7 +268,10 @@ app.controller('MerchantController', function ($scope, $rootScope, envService, $
 		$rootScope.invoiceNotify.ccMe = angular.copy(invoicesetting.ccMe);
 		$rootScope.invoiceNotify.emailSubject = angular.copy(invoicesetting.emailSubject);
 		$rootScope.invoiceNotify.emailNote = angular.copy(invoicesetting.emailNote);
-	}
+    }
+    $rootScope.clearInputFiles = function () {
+        angular.element("input[type='file']").val(null);
+    }
 	$scope.logout = function() {
 		$cookies.put("access_token", "");
 		window.location.href="/login?logout";

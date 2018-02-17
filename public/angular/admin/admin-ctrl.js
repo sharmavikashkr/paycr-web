@@ -189,7 +189,10 @@ app.controller('AdminController', function ($scope, $rootScope, envService, $htt
 		}, function(data) {
 			$scope.serverMessage(data);
 		});
-	}
+    }
+    $rootScope.clearInputFiles = function () {
+        angular.element("input[type='file']").val(null);
+    }
 	$scope.logout = function() {
 		$cookies.put("access_token", "");
 		window.location.href="/adminlogin?logout";

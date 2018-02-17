@@ -60,7 +60,7 @@
 							</table>
 							<div class="form-group">
 								<label class="control-label">Upload Suppliers (CSV): (<a href="{{appUrl}}/supplier/bulk/upload/format">Download format</a>)</label>
-								<input type="file" onchange="angular.element(this).scope().uploadSuppliers(this.files)" accept=".csv" />
+								<input type="file" onchange="angular.element(this).scope().uploadSuppliers(this.files)" ng-click="clearInputFiles()" accept=".csv" />
 							</div>
 							<br>
 							<label>History</label>
