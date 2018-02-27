@@ -7,7 +7,8 @@ app.controller('ConsumerController', function($scope, $rootScope, envService, $h
 	$rootScope.updateConsumerReq = {
 		"flagList" : [],
 		"emailOnPay" : true,
-		"emailOnRefund" : true,
+        "emailOnRefund": true,
+        "emailNote": true,
 		"active" : true
 	}
 	$scope.newconsumer = {
