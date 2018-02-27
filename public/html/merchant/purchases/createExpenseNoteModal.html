@@ -88,16 +88,16 @@
 													</td>
 													<td>
 														<div ng-class="(createENoteForm.itemCode{{$index}}.$valid)?'':'has-error'" class="form-group">
-															<input class="form-control text-center" list="cn-item-code-auto-complete" ng-change="setAsset(item,'CODE')" ng-model="item.asset.code" name="itemCode{{$index}}" autocomplete="off" placeholder="Code" type="text" ng-pattern="patterns.paramNamePattern" required />
-															<datalist id="cn-item-code-auto-complete">
+															<input class="form-control text-center" list="exp-cn-item-code-auto-complete" ng-change="setAsset(item,'CODE')" ng-model="item.asset.code" name="itemCode{{$index}}" autocomplete="off" placeholder="Code" type="text" ng-pattern="patterns.paramNamePattern" required />
+															<datalist id="exp-cn-item-code-auto-complete">
 																<option ng-repeat="astitem in assetList" ng-if="astitem.active" ng-value="astitem.code">
 															</datalist>
 														</div>
 													</td>
 													<td>
 														<div ng-class="(createENoteForm.itemName{{$index}}.$valid)?'':'has-error'" class="form-group">
-															<input class="form-control text-center" list="cn-item-name-auto-complete" ng-change="setAsset(item,'NAME')" ng-model="item.asset.name" name="itemName{{$index}}" autocomplete="off" placeholder="Name" type="text" ng-pattern="patterns.namePattern" required />
-															<datalist id="cn-item-name-auto-complete">
+															<input class="form-control text-center" list="exp-cn-item-name-auto-complete" ng-change="setAsset(item,'NAME')" ng-model="item.asset.name" name="itemName{{$index}}" autocomplete="off" placeholder="Name" type="text" ng-pattern="patterns.namePattern" required />
+															<datalist id="exp-cn-item-name-auto-complete">
 																<option ng-repeat="astitem in assetList" ng-if="astitem.active" ng-value="astitem.name">
 															</datalist>
 														</div>
