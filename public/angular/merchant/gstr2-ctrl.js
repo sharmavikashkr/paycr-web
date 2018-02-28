@@ -1,5 +1,5 @@
 app.controller('Gstr2Controller', function($scope, $rootScope, envService, $http, $cookies) {
-	$scope.period = "01-2018";
+	$scope.period = "02-2018";
 	$scope.loadGstr2Report = function(period) {
 		var req = {
 			method : 'GET',
