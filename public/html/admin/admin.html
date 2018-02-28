@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -68,7 +68,6 @@
 		<div ng-if="user.access.ops" ng-include="templateUrl('common','createReportModal')"></div>
 		<div ng-if="user.access.ops" ng-include="templateUrl('common','recurrReportModal')"></div>
 		<div ng-if="user.access.supervisor" ng-include="templateUrl('admin','addTaxModal')"></div>
-		<div ng-if="user.access.supervisor" ng-include="templateUrl('admin','editAddressModal')"></div>
 		<div ng-if="user.access.supervisor" ng-include="templateUrl('admin','createPromotionModal')"></div>
 		<div ng-include="templateUrl('admin','subsDetailsModal')"></div>
 		<div ng-include="templateUrl('common','changePasswordModal')"></div>

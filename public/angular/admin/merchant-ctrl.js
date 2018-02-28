@@ -17,7 +17,6 @@ app.controller('MerchantController', function($scope, $rootScope, envService, $h
 		$http(req).then(function(merchants) {
 			$rootScope.merchantList = merchants.data;
 			$scope.loadMerchantPage(1);
-			$rootScope.loadAdminSetting();
 		}, function(data) {
 			$scope.serverMessage(data);
 		});

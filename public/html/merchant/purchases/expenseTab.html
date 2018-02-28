@@ -180,7 +180,7 @@
 														<td>{{expense.payment.paymentRefNo}}</td>
 													</tr>
 													<tr>
-														<td><strong>Pay Mode</strong></td>
+														<td><strong>Pay Method</strong></td>
 														<td>{{expense.payment.method}}</td>
 													</tr>
 													<tr>
@@ -230,14 +230,12 @@
 													ng-if="expense.status == 'PAID' && user.access.finance"
 													ng-click="updateExpenseInfo(expense)"
 													data-toggle="modal" data-target="#expenseRefundModal"
-													type="button" class="btn btn-danger">Register Refund</button>
+													type="button" class="btn btn-danger">Received Refund</button>
                                                 <button style="margin: 5px;"
                                                     ng-if="expense.status == 'PAID' && expense.items != null && user.access.finance && expense.note == null"
                                                     ng-click="updateExpenseNote(expense)"
                                                     data-toggle="modal" data-target="#createExpenseNoteModal"
-                                                    type="button" class="btn bg-purple">
-                                                    <i class="fa fa-plus"></i> Note
-                                                </button>
+                                                    type="button" class="btn bg-purple">Received Note</button>
 											</div>
 										</div>
 									</div>
