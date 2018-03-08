@@ -1,9 +1,13 @@
 app.controller('Gstr1Controller', function($scope, $rootScope, envService, $http, $cookies) {
 	$rootScope.updateFilingPeriod = function() {
 		if($rootScope.merchant.gstSetting.filingPeriod == 'QUARTERLY') {
-			$scope.period = "01-03-2018";
+            $scope.gstr1 = {
+                "period" : "01-03-2018"
+            }
 		} else {
-			$scope.period = "01-2018";
+            $scope.gstr1 = {
+                "period": "03-2018"
+            }
 		}
 	}
 	$scope.loadGstr1Report = function(period) {
@@ -21,7 +25,8 @@ app.controller('Gstr1Controller', function($scope, $rootScope, envService, $http
 			$scope.loadB2CLargePage();
 			$scope.loadB2BPage();
 			$scope.loadB2BNotePage();
-			$scope.loadB2CNotePage();
+            $scope.loadB2CNotePage();
+            $scope.loadNilPage();
 		}, function(data) {
 			$scope.serverMessage(data);
 		});
@@ -105,7 +110,23 @@ app.controller('Gstr1Controller', function($scope, $rootScope, envService, $http
 		for (var i = 1; i <= noOfPages; i++) {
 			$rootScope.gstr1ReportResp.b2cNote.allPages.push(i);
 		}
-	}
+    }
+    $scope.loadNilPage = function (page) {
+        var pageSize = 10;
+        $rootScope.gstr1ReportResp.nil = {};
+        $rootScope.gstr1ReportResp.nil = angular.copy($rootScope.gstr1Report.nil);
+        $rootScope.gstr1ReportResp.nil.splice(pageSize * page, $rootScope.gstr1Report.nil.length - pageSize);
+        $rootScope.gstr1ReportResp.nil.splice(0, pageSize * (page - 1));
+        $rootScope.gstr1ReportResp.nil.page = page;
+        $rootScope.gstr1ReportResp.nil.allPages = [];
+        var noOfPages = $rootScope.gstr1Report.nil.length / pageSize;
+        if ($rootScope.gstr1Report.nil.length % pageSize != 0) {
+            noOfPages = noOfPages + 1;
+        }
+        for (var i = 1; i <= noOfPages; i++) {
+            $rootScope.gstr1ReportResp.nil.allPages.push(i);
+        }
+    }
 	$scope.downloadGstr1Report = function(period) {
 		var req = {
 			method : 'GET',

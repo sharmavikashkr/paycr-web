@@ -2,7 +2,7 @@
 	<div class="panel-body" style="font-size:12px;">
 		<div class="row">
 			<div class="col-xs-6 col-sm-3">
-				<select class="form-control" ng-model="period">
+				<select class="form-control" ng-model="gstr2.period">
 					<option value="11-2017">November, 2017</option>
 					<option value="12-2017">December, 2017</option>
 					<option value="01-2018">January, 2018</option>
@@ -11,12 +11,12 @@
 				</select>
 			</div>
 			<div class="col-xs-2 col-sm-2">
-				<button class="btn btn-primary btn-sm" ng-click="loadGstr2Report(period)">Load</button>
+				<button class="btn btn-primary btn-sm" ng-click="loadGstr2Report(gstr2.period)">Load</button>
 			</div>
 			<div class="col-xs-4 col-sm-2 pull-right">
 				<div class="pull-right">
-					<button title="Download" class="btn btn-flat btn-success btn-sm" ng-click="downloadGstr2Report(period)"><i class="fa fa-download"></i></button>
-					<button title="Mail" class="btn btn-flat btn-danger btn-sm" ng-click="mailGstr2Report(period)"><i class="fa fa-envelope"></i></button>
+					<button title="Download" class="btn btn-flat btn-success btn-sm" ng-click="downloadGstr2Report(gstr2.period)"><i class="fa fa-download"></i></button>
+					<button title="Mail" class="btn btn-flat btn-danger btn-sm" ng-click="mailGstr2Report(gstr2.period)"><i class="fa fa-envelope"></i></button>
 				</div>
 			</div>
 		</div>
@@ -185,6 +185,36 @@
 						</ul>
 					</div>
 				</div>
+                <div ng-if="gstr2ReportResp.nil != null" class="box box-success text-center">
+                    <div class="box-header with-border">
+                        <h5 class="box-title">GSTR2 Nil</h5>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center hidden-xs">Supply Type</th>
+                                    <th class="text-center">Nil Rated</th>
+                                    <th class="text-center">Exempted</th>
+                                    <th class="text-center">Non GST</th>
+                                </tr>
+                            </thead>
+                            <tbody id="itemBody">
+                                <tr class="bg-olive" ng-repeat="nil in gstr2ReportResp.nil">
+                                    <td class="hidden-xs">{{nil.supplyType}}</td>
+                                    <td>{{nil.nilRated}}</td>
+                                    <td>{{nil.exempted}}</td>
+                                    <td>{{nil.nonGst}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <ul class="pagination" style="float:right;">
+                            <li ng-class="(gstr2ReportResp.nil.page <= 1)?'disabled':''" class="paginate_button previous"><a ng-click="(gstr2ReportResp.nil.page <= 1) || loadNilPage(gstr2ReportResp.nil.page-1)" href="#">Previous</a></li>
+                            <li ng-repeat="page in gstr2ReportResp.nil.allPages" ng-class="(page == gstr2ReportResp.nil.page)?'active':''"><a ng-click="loadNilPage(page)" href="#">{{page}}</a></li>
+                            <li ng-class="(gstr2ReportResp.nil.page >= gstr2ReportResp.nil.allPages.length)?'disabled':''" class="paginate_button next"><a ng-click="(gstr2ReportResp.nil.page >= gstr2ReportResp.nil.allPages.length) || loadNilPage(gstr2ReportResp.nil.page+1)" href="#">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</div>
