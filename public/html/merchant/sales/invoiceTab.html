@@ -176,9 +176,9 @@
 											<span class="dropdown">
 											    <button class="btn bg-purple btn-flat dropdown-toggle" type="button" data-toggle="dropdown">More <span class="caret"></span></button>
 											    <ul class="dropdown-menu" style="margin:10px 0 0;">
-											    	<li ng-if="invoice.invoiceType == 'SINGLE'"><a href="#" ng-click="updateMakeRecurringInvoice(invoice)" data-toggle="modal" data-target="#createInvoiceModal">Make Recurring</a></li>
-													<li><a href="#" ng-click="updateCloneInvoice(invoice)" data-toggle="modal" data-target="#createInvoiceModal">Clone</a></li>
-													<li class="divider"></li>
+											    	<li ng-if="invoice.invoiceType == 'SINGLE' && user.access.finance"><a href="#" ng-click="updateMakeRecurringInvoice(invoice)" data-toggle="modal" data-target="#createInvoiceModal">Make Recurring</a></li>
+													<li ng-if="user.access.finance"><a href="#" ng-click="updateCloneInvoice(invoice)" data-toggle="modal" data-target="#createInvoiceModal">Clone</a></li>
+													<li ng-if="user.access.finance" class="divider"></li>
 													<li ng-click="updateInvoiceInfo(invoice)" ng-if="invoice.invoiceType == 'SINGLE'"><a href="#" data-toggle="modal" data-target="#invoiceNoticeModal">Reminders</a></li>
 													<li ng-click="fetchTimelines(invoice)"><a href="#" data-toggle="modal" data-target="#invoiceTimelineModal">Timeline</a></li>
 											    </ul>

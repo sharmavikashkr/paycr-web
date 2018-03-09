@@ -58,7 +58,7 @@
 	        <div ng-if="user.access.finance" id="subscriptionTab" class="tab-pane fade" ng-include="templateUrl('merchant','subscriptionTab')"></div>
 	        <div ng-if="user.access.ops" id="reportsTab" class="tab-pane fade" ng-include="templateUrl('common','reportsTab')"></div>
 	        <div ng-if="user.access.admin" id="usersTab" class="tab-pane fade" ng-include="templateUrl('common','usersTab')"></div>
-	        <div ng-if="user.access.finance" id="taxTab" class="tab-pane fade" ng-include="templateUrl('merchant','taxTab')"></div>
+	        <div id="taxTab" class="tab-pane fade" ng-include="templateUrl('merchant','taxTab')"></div>
 	        <div ng-if="user.access.finance" id="settingsTab" class="tab-pane fade" ng-include="templateUrl('merchant','settingsTab')"></div>
 	        <div id="profileTab" class="tab-pane fade" ng-include="templateUrl('common','profileTab')"></div>
 		</div>
