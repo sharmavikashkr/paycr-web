@@ -116,6 +116,14 @@
                                     <td>Email Note</td>
                                     <td><input class="form-control" ng-model="merchant.invoiceSetting.emailNote" required /></td>
                                 </tr>
+                                <tr>
+                                    <td>Auto Remind</td>
+                                    <td><input type="checkbox" ng-model="merchant.invoiceSetting.autoRemind"></td>
+                                </tr>
+                                <tr ng-if="merchant.invoiceSetting.autoRemind">
+                                    <td>Remind Days (between 1 to 7)</td>
+                                    <td><input type="number" step="1" class="form-control" ng-model="merchant.invoiceSetting.remindDays"></td>
+                                </tr>
                             </table>
                         </fieldset>
                     </div>
