@@ -1,1 +1,0 @@
-Hi ${invoice.consumer.name}, ${invoice.merchant.name} has requested you to pay INR ${invoice.payAmount} online. Click on ${invoiceUrl} to proceed.
