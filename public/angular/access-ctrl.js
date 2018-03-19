@@ -14,7 +14,7 @@ app.config(function(envServiceProvider) {
 				apiUrl: 'http://alphaapi.paycr.in'
 			},
 			production: {
-				apiUrl: 'http://api.paycr.in'
+				apiUrl: 'https://api.paycr.in'
 			},
 			defaults: {
 				apiUrl: 'http://localhost:9090'
