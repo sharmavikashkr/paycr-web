@@ -397,7 +397,26 @@ app.controller('InvoiceController', function($scope, $rootScope, envService, $ht
 		}, function(data) {
 			$scope.serverMessage(data);
 		});
-	}
+    }
+    $scope.deleteInvoice = function (invoiceCode) {
+        if (!confirm('Delete ' + invoiceCode + ' ?')) {
+            return false;
+        }
+        var req = {
+            method: 'GET',
+            url: $rootScope.appUrl + "/invoice/delete/" + invoiceCode,
+            headers: {
+                "Authorization": "Bearer "
+                + $cookies.get("access_token")
+            }
+        }
+        $http(req).then(function (data) {
+            $rootScope.searchInvoice();
+            $scope.serverMessage(data);
+        }, function (data) {
+            $scope.serverMessage(data);
+        });
+    }
 	$scope.refundInvoice = function(invoiceCode, refundAmount) {
 		if(refundAmount == undefined) {
 			return false;

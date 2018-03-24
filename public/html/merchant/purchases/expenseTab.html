@@ -149,6 +149,9 @@
 											<button ng-click="fetchTimelines(expense)" title="Expense Timelines" class="btn btn-flat bg-purple btn-md hidden-xs" data-toggle="modal" data-target="#expenseTimelineModal">
 												<i class="fa fa-level-down"></i>
 											</button>
+                                            <button ng-click="deleteExpense(expense.expenseCode)" title="Delete Expense" class="btn btn-flat bg-red btn-md">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
 										</div>
 									</div>
 									<div class="row">

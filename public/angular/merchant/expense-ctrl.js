@@ -285,6 +285,25 @@ app.controller('ExpenseController', function($scope, $rootScope, envService, $ht
 		angular.element(document.querySelector('#createExpenseModal')).modal('hide');
 		angular.element(document.querySelector('#createExpenseXsModal')).modal('hide');
     }
+    $scope.deleteExpense = function (expenseCode) {
+        if (!confirm('Delete ' + expenseCode + ' ?')) {
+            return false;
+        }
+        var req = {
+            method: 'GET',
+            url: $rootScope.appUrl + "/expense/delete/" + expenseCode,
+            headers: {
+                "Authorization": "Bearer "
+                + $cookies.get("access_token")
+            }
+        }
+        $http(req).then(function (data) {
+            $rootScope.searchExpense();
+            $scope.serverMessage(data);
+        }, function (data) {
+            $scope.serverMessage(data);
+        });
+    }
     $scope.createExpNote = function () {
         var req = {
             method: 'POST',
