@@ -182,7 +182,7 @@
 													<li ng-click="updateInvoiceInfo(invoice)" ng-if="invoice.invoiceType == 'SINGLE'"><a href="#" data-toggle="modal" data-target="#invoiceNoticeModal">Reminders</a></li>
 													<li ng-click="fetchTimelines(invoice)"><a href="#" data-toggle="modal" data-target="#invoiceTimelineModal">Timeline</a></li>
                                                     <li ng-if="user.access.finance" class="divider"></li>
-                                                    <li ng-click="deleteInvoice(invoice.invoiceCode)"><a href="#">Delete</a></li>
+                                                    <li ng-if="user.access.finance" ng-click="deleteInvoice(invoice.invoiceCode)"><a href="#">Delete</a></li>
 											    </ul>
 											</span>
 										</div>

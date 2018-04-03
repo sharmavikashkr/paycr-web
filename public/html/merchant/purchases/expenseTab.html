@@ -146,12 +146,16 @@
 											<button ng-click="updateExpenseInfo(expense)" title="Attachments" class="btn btn-flat bg-maroon btn-md" data-toggle="modal" data-target="#expenseAttachmentModal">
 												<i class="fa fa-paperclip"></i>
 											</button>
-											<button ng-click="fetchTimelines(expense)" title="Expense Timelines" class="btn btn-flat bg-purple btn-md hidden-xs" data-toggle="modal" data-target="#expenseTimelineModal">
-												<i class="fa fa-level-down"></i>
-											</button>
-                                            <button ng-click="deleteExpense(expense.expenseCode)" title="Delete Expense" class="btn btn-flat bg-red btn-md">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
+                                            <span class="dropdown">
+                                                <button class="btn bg-purple btn-flat dropdown-toggle" type="button" data-toggle="dropdown">More <span class="caret"></span></button>
+                                                <ul class="dropdown-menu" style="margin:10px 0 0;">
+                                                    <li ng-if="user.access.finance"><a href="#" ng-click="updateCloneExpense(expense)" data-toggle="modal" data-target="#createExpenseModal">Clone</a></li>
+                                                    <li ng-if="user.access.finance" class="divider"></li>
+                                                    <li ng-click="fetchTimelines(expense)"><a href="#" data-toggle="modal" data-target="#expenseTimelineModal">Timeline</a></li>
+                                                    <li ng-if="user.access.finance" class="divider"></li>
+                                                    <li ng-if="user.access.finance" ng-click="deleteExpense(expense.expenseCode)"><a href="#">Delete</a></li>
+                                                </ul>
+                                            </span>
 										</div>
 									</div>
 									<div class="row">

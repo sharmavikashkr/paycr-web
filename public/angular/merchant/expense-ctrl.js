@@ -136,7 +136,15 @@ app.controller('ExpenseController', function($scope, $rootScope, envService, $ht
 		}
 		$rootScope.setTaxForExpense();
 		$rootScope.calculateExpTotal();
-	}
+    }
+    $rootScope.updateCloneExpense = function (expense) {
+        $rootScope.saveexpense = angular.copy(expense);
+        $rootScope.saveexpense.id = null;
+        $rootScope.saveexpense.invoiceCode = null;
+        $rootScope.saveexpense.update = false;
+        $rootScope.setTaxForExpense();
+        $rootScope.calculateExpTotal();
+    }
 	$rootScope.setTaxForExpense = function() {
 		for(var index in $rootScope.saveexpense.items) {
 			for(var tax in $rootScope.taxList) {
