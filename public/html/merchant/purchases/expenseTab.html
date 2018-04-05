@@ -104,7 +104,7 @@
 							<th>Expense Code</th>
 							<th>Amount</th>
 							<th>Invoice Code</th>
-							<th class="hidden-xs">Created</th>
+							<th class="hidden-xs">Invoice Date</th>
 							<th class="hidden-xs">Status</th>
 						</tr>
 					</thead>
@@ -117,7 +117,7 @@
 							<td>{{expense.expenseCode}}</td>
 							<td><i class="fa fa-rupee"></i> {{expense.payAmount}}</td>
 							<td>{{expense.invoiceCode}}</td>
-							<td class="hidden-xs">{{expense.created | date:'dd-MM-yyyy HH:mm'}}</td>
+							<td class="hidden-xs">{{expense.invoiceDate | date:'dd-MM-yyyy'}}</td>
 							<td class="hidden-xs">{{expense.status}}</td>
 						</tr>
 						<tr>
